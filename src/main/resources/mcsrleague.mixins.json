@@ -1,0 +1,39 @@
+{
+  "required": true,
+  "package": "com.mcsrleague.mslmod.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "access.CreateWorldScreenAccess",
+    "access.MinecraftClientAccess",
+    "access.MoreOptionsDialogAccess",
+    "game.BlazeEntityMixin",
+    "game.ChunkGeneratorMixin",
+    "game.CreateWorldScreenMixin",
+    "game.DebugHudMixin",
+    "game.EyeOfEnderEntityMixin",
+    "game.IronGolemEntityMixin",
+    "game.LevelPropertiesMixin",
+    "game.MinecraftClientMixin",
+    "game.MinecraftServerMixin",
+    "game.PiglinBrainMixin",
+    "game.SeedCommandMixin",
+    "game.ServerPlayerEntityMixin",
+    "game.ServerResourceManagerMixin",
+    "game.SurfaceChunkGeneratorMixin",
+    "game.UpdateDifficultyC2SPacketMixin",
+    "loadscreen.LevelLoadingScreenMixin",
+    "loadscreen.ProgressScreenMixin",
+    "loadscreen.SaveLevelScreenMixin",
+    "screen.CreditsScreenMixin",
+    "screen.DeathScreenMixin",
+    "screen.DumbGameMenuScreenMixin",
+    "screen.GameMenuScreenMixin",
+    "screen.OptionsScreenMixin",
+    "screen.TitleScreenMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

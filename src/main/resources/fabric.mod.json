@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "mcsrleague",
+  "version": "${version}",
+  "name": "MSL Mod",
+  "description": "MSL's official Minecraft mod.",
+  "authors": [
+    "DuncanRuns"
+  ],
+  "contributors": [],
+  "contact": {
+    "homepage": "https://mcsrleague.com/"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/mcsrleague/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mcsrleague.mslmod.MSLMod"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [
+    "mcsrleague.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.10.0",
+    "minecraft": "1.16.1"
+  }
+}
