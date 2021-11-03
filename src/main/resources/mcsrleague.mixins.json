@@ -18,6 +18,7 @@
     "game.PiglinBrainMixin",
     "game.SeedCommandMixin",
     "game.ServerPlayerEntityMixin",
+    "game.ServerPlayNetworkHandlerMixin",
     "game.ServerResourceManagerMixin",
     "game.SurfaceChunkGeneratorMixin",
     "game.UpdateDifficultyC2SPacketMixin",
