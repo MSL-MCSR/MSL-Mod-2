@@ -1,10 +1,11 @@
 package com.mcsrleague.mslmod.screen;
 
+import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
@@ -13,26 +14,24 @@ import java.util.List;
 
 public class MSLCreditsScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
-    private static final Identifier DONE = new Identifier("mcsrleague:textures/gui/button/done_small.png");
-
     private final List<Text> texts;
     private final Screen parent;
 
     public MSLCreditsScreen(Screen parent) {
-        super(new LiteralText("MSL Credits"));
+        super(new TranslatableText("mcsrleague.credits.title"));
         this.parent = parent;
         texts = getTexts();
     }
 
     private List<Text> getTexts() {
         List<Text> texts = new ArrayList<>();
-        texts.add(new LiteralText("Staff").formatted(Formatting.UNDERLINE).formatted(Formatting.BOLD));
-        texts.add(new LiteralText("Mod Developer - ").append(new LiteralText("DuncanRuns").formatted(Formatting.GREEN).formatted(Formatting.BOLD)));
-        texts.add(new LiteralText("Art & Design - ").append(new LiteralText("Daferade").formatted(Formatting.DARK_AQUA).formatted(Formatting.BOLD)));
-        texts.add(new LiteralText("Website & API Developer - ").append(new LiteralText("Melskaaja").formatted(Formatting.BLUE).formatted(Formatting.BOLD)));
-        texts.add(new LiteralText("Streamer and Community Organizer - ").append(new LiteralText("Antoine").formatted(Formatting.GOLD).formatted(Formatting.BOLD)));
-        texts.add(new LiteralText(""));
-        texts.add(new LiteralText("Mod Testers").formatted(Formatting.UNDERLINE).formatted(Formatting.BOLD));
+        texts.add(new TranslatableText("mcsrleague.credits.staff").formatted(Formatting.UNDERLINE).formatted(Formatting.BOLD));
+        texts.add(new TranslatableText("mcsrleague.credits.moddev").append(new LiteralText(" - ")).append(new LiteralText("DuncanRuns").formatted(Formatting.GREEN).formatted(Formatting.BOLD)));
+        texts.add(new TranslatableText("mcsrleague.credits.art").append(new LiteralText(" - ")).append(new LiteralText("Daferade").formatted(Formatting.DARK_AQUA).formatted(Formatting.BOLD)));
+        texts.add(new TranslatableText("mcsrleague.credits.webdev").append(new LiteralText(" - ")).append(new LiteralText("Melskaaja").formatted(Formatting.BLUE).formatted(Formatting.BOLD)));
+        texts.add(new TranslatableText("mcsrleague.credits.streamer").append(new LiteralText(" - ")).append(new LiteralText("Antoine").formatted(Formatting.GOLD).formatted(Formatting.BOLD)));
+        texts.add(LiteralText.EMPTY);
+        texts.add(new TranslatableText("mcsrleague.credits.testers").formatted(Formatting.UNDERLINE).formatted(Formatting.BOLD));
         texts.add(new LiteralText("Ybot, sl1dr, AutomattPL, CroPro, MinecrAvenger,"));
         texts.add(new LiteralText("Falacias, PrinceofSha, and SunOmega"));
         return texts;
@@ -40,7 +39,7 @@ public class MSLCreditsScreen extends Screen {
 
     @Override
     protected void init() {
-        addButton(new TexturedButtonWidget(width - 84, height - 24, 80, 20, 0, 0, 20, DONE, 80, 40, button -> onClose()));
+        addButton(new MSLButtonWidget(width - 84, height - 24, 80, 20, new TranslatableText("mcsrleague.credits.done"), button -> onClose()));
     }
 
     @Override

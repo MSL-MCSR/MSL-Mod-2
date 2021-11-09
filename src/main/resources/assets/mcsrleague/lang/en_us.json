@@ -1,0 +1,69 @@
+{
+  "mcsrleague.completion.title": "MSL Race Completed",
+  "mcsrleague.completion.token": "Copy Token",
+  "mcsrleague.completion.done": "Done",
+  "mcsrleague.completion.tokeninfo": "Seed completed! Please submit your token!",
+  "mcsrleague.completion.copywarning": "You must copy your token first!",
+
+  "mcsrleague.continue.title": "Continue Playing?",
+  "mcsrleague.continue.continue": "Continue",
+  "mcsrleague.continue.quit": "Quit",
+  "mcsrleague.continue.warning": "Pressing again will forfeit this seed, and you will receive no points.",
+
+  "mcsrleague.seed.title": "Play Custom Seed",
+  "mcsrleague.seed.create": "Create",
+  "mcsrleague.seed.cancel": "Cancel",
+  "mcsrleague.seed.worldseed": "World Seed",
+  "mcsrleague.seed.dropseed": "Drop Seed (Barters, etc.)",
+
+  "mcsrleague.dumb.unlock": "Cancel Toaster button is now unlocked in the options menu.",
+  "mcsrleague.dumb.canceltoaster": "Cancel Toaster",
+
+  "mcsrleague.exit.title": "Choose Exit Option...",
+  "mcsrleague.exit.reload": "Reload World",
+  "mcsrleague.exit.restart": "Restart Seed",
+  "mcsrleague.exit.forfeit": "Forfeit Seed",
+  "mcsrleague.exit.confirm": "Click again to confirm forfeit.",
+
+  "mcsrleague.credits.title": "MSL Credits",
+  "mcsrleague.credits.staff": "Staff",
+  "mcsrleague.credits.moddev": "Mod Developer",
+  "mcsrleague.credits.art": "Art & Design",
+  "mcsrleague.credits.webdev": "Website & API Developer",
+  "mcsrleague.credits.streamer": "Streamer and Community Organizer",
+  "mcsrleague.credits.testers": "Mod Testers",
+  "mcsrleague.credits.done": "Done",
+
+  "mcsrleague.options.title": "MSL Options & Extras",
+  "mcsrleague.options.done": "Done",
+  "mcsrleague.options.difficulty": "Starting Difficulty",
+  "mcsrleague.options.easy": "Easy",
+  "mcsrleague.options.normal": "Normal",
+  "mcsrleague.options.hard": "Hard",
+  "mcsrleague.options.other": "Other",
+  "mcsrleague.options.testrace": "Play Test Race",
+  "mcsrleague.options.customseed": "Play Custom Seed",
+  "mcsrleague.options.credits": "View Credits",
+
+  "mcsrleague.web.title": "Open Webpage",
+  "mcsrleague.web.home": "Home",
+  "mcsrleague.web.faq": "FAQ/Rules",
+  "mcsrleague.web.leaderboard": "Leaderboard",
+
+  "mcsrleague.play.waiting": "Waiting for information before countdown...",
+  "mcsrleague.play.retreiving": "Retrieving Information",
+  "mcsrleague.play.try": "Try",
+  "mcsrleague.play.copyerror": "Copy Error",
+  "mcsrleague.play.cancel": "Cancel",
+  "mcsrleague.play.soon": "Starting soon",
+  "mcsrleague.play.starting": "Starting in",
+  "mcsrleague.play.fail": "Failed to connect to MSL.",
+  "mcsrleague.play.escwarn": "Cancel to Exit",
+
+  "mcsrleague.title.play": "Play MSL",
+
+  "mcsrleague.game.noseed": "You cannot use /seed on MSL Race worlds!",
+  "mcsrleague.game.exit": "Exit Options...",
+
+  "mcsrleague.warning.incompatible": "Incompatible mods found, please remove the following mods"
+}

@@ -10,7 +10,6 @@ import net.minecraft.client.gui.screen.TitleScreen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -53,8 +52,8 @@ public abstract class TitleScreenMixin extends Screen {
 
         });
 
-        ButtonWidget playMSLButton = new ButtonWidget(width / 2 - 76, y + spacingY * 2, 152, 20, new LiteralText("Play MSL").formatted(Formatting.WHITE).formatted(Formatting.BOLD), button -> {
-            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/seed/"+ FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion())));
+        ButtonWidget playMSLButton = new ButtonWidget(width / 2 - 76, y + spacingY * 2, 152, 20, new TranslatableText("mcsrleague.title.play").formatted(Formatting.WHITE).formatted(Formatting.BOLD), button -> {
+            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/seed/" + FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion())));
         });
         AbstractButtonWidget optionsMSLButton = new TexturedButtonWidget(width / 2 + 80, y + spacingY * 2, 20, 20, 0, 0, 20, OPTIONS, 20, 40, button -> {
             client.openScreen(new MSLOptionsScreen());

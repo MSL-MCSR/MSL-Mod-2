@@ -16,9 +16,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ProgressScreen.class)
 public abstract class ProgressScreenMixin extends Screen {
-    @Shadow @Nullable private Text task;
-    @Shadow private int progress;
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
+    @Shadow
+    @Nullable
+    private Text task;
+    @Shadow
+    private int progress;
 
     protected ProgressScreenMixin(Text title) {
         super(title);
@@ -42,7 +45,7 @@ public abstract class ProgressScreenMixin extends Screen {
         }
 
         if (this.task != null && this.progress != 0) {
-            this.drawCenteredText(matrices, this.textRenderer, (new LiteralText("")).append(this.task).append(" " + this.progress + "%"), this.width / 2, 90, 16777215);
+            this.drawCenteredText(matrices, this.textRenderer, ((LiteralText) LiteralText.EMPTY).append(this.task).append(" " + this.progress + "%"), this.width / 2, 90, 16777215);
         }
     }
 }

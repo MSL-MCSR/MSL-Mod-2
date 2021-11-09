@@ -2,26 +2,26 @@ package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.session.SeedSession;
+import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 public class ContinueSessionScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
-    private static final Identifier QUIT = new Identifier("mcsrleague:textures/gui/button/quit.png");
-    private static final Identifier CONTINUE = new Identifier("mcsrleague:textures/gui/button/continue.png");
     private boolean pressedQuit;
+    private Text warning;
 
     public ContinueSessionScreen() {
-        super(new LiteralText("Continue?"));
+        super(new TranslatableText("mcsrleague.continue.title"));
     }
 
     @Override
     protected void init() {
-        addButton(new TexturedButtonWidget(this.width / 2 - 100, this.height / 4 + 72, 200, 20, 0, 0, 20, CONTINUE, 200, 40, button -> SeedSession.playSessionLevel()));
-        addButton(new TexturedButtonWidget(this.width / 2 - 100, this.height / 4 + 96, 200, 20, 0, 0, 20, QUIT, 200, 40, button -> {
+        addButton(new MSLButtonWidget(this.width / 2 - 100, this.height / 4 + 72, 200, 20, new TranslatableText("mcsrleague.continue.continue"), button -> SeedSession.playSessionLevel()));
+        addButton(new MSLButtonWidget(this.width / 2 - 100, this.height / 4 + 96, 200, 20, new TranslatableText("mcsrleague.continue.quit"), button -> {
             if (!pressedQuit) {
                 pressedQuit = true;
             } else {
@@ -33,6 +33,7 @@ public class ContinueSessionScreen extends Screen {
             MSLMod.eo().mark(4);
         }
         pressedQuit = false;
+        warning = new TranslatableText("mcsrleague.continue.warning");
     }
 
     @Override
@@ -41,9 +42,9 @@ public class ContinueSessionScreen extends Screen {
         assert client != null;
         client.getTextureManager().bindTexture(MSL_LOGO);
         drawTexture(matrices, this.width / 2 - 64, height / 2 - 112, 0.0F, 0.0F, 128, 64, 128, 64);
-        drawCenteredString(matrices, textRenderer, "Continue Playing?", width / 2, height / 2 - 48, 16777215);
+        drawCenteredText(matrices, textRenderer, title, width / 2, height / 2 - 48, 16777215);
         if (pressedQuit) {
-            drawCenteredString(matrices, textRenderer, "Pressing again will forfeit this seed, and you will receive no points.", width / 2, height / 4 + 120, 16777215);
+            drawCenteredText(matrices, textRenderer, warning, width / 2, height / 4 + 120, 16777215);
         }
         super.render(matrices, mouseX, mouseY, delta);
     }

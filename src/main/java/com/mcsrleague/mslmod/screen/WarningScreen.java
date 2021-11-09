@@ -19,6 +19,7 @@ public class WarningScreen extends Screen {
     private final List<Text> textList;
     private AbstractButtonWidget continueButton;
     private AbstractButtonWidget quitButton;
+    private Text incompatibleText;
 
     public WarningScreen() {
         super(new LiteralText("Warning Screen"));
@@ -40,6 +41,7 @@ public class WarningScreen extends Screen {
                 onClose();
             }
         }));
+        incompatibleText = new TranslatableText("mcsrleague.warning.incompatible").append(new LiteralText(":"));
     }
 
     @Override
@@ -50,7 +52,7 @@ public class WarningScreen extends Screen {
         drawTexture(matrices, this.width / 2 - 64, height / 2 - 112, 0.0F, 0.0F, 128, 64, 128, 64);
 
         int y = height / 2 - 36;
-        drawCenteredText(matrices, textRenderer, new LiteralText("Incompatible mods found, please remove the following mods:"), width / 2, y, 16777215);
+        drawCenteredText(matrices, textRenderer, incompatibleText, width / 2, y, 16777215);
         for (Text text : textList) {
             y += 15;
             drawCenteredText(matrices, textRenderer, text, width / 2, y, 16777215);

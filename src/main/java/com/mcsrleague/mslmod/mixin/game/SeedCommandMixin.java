@@ -27,7 +27,7 @@ public abstract class SeedCommandMixin {
                 return style.withColor(Formatting.GREEN).withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, String.valueOf(l))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("chat.copy.click"))).withInsertion(String.valueOf(l));
             }));
             if (SessionWorld.isSessionWorld()) {
-                ((ServerCommandSource) commandContext.getSource()).sendFeedback(new LiteralText("You cannot use /seed on MSL Race worlds!").formatted(Formatting.RED), false);
+                ((ServerCommandSource) commandContext.getSource()).sendFeedback(new TranslatableText("mcsrleague.game.noseed").formatted(Formatting.RED), false);
                 return 0;
             } else {
                 ((ServerCommandSource) commandContext.getSource()).sendFeedback(new TranslatableText("commands.seed.success", new Object[]{text}), false);

@@ -30,7 +30,7 @@ public abstract class OptionsScreenMixin extends Screen {
     private void initMixin(CallbackInfo info) {
         assert this.client != null;
         if (DumbUtil.isDumbUnlocked()) {
-            addButton(new ButtonWidget(4, height - 24, 90, 20, new LiteralText("Cancel Toaster"), button -> {
+            addButton(new ButtonWidget(4, height - 24, 90, 20, new TranslatableText("mcsrleague.dumb.canceltoaster"), button -> {
                 this.client.openScreen(new DumbGameScreen(this));
             }));
         }

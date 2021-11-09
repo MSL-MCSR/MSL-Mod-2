@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -59,7 +60,7 @@ public abstract class DumbGameMenuScreenMixin extends Screen {
                         cancelToasterButton.active = true;
                         randomButton.active = false;
                         cancelToasterButton.setAlpha(1.0f);
-                        cancelToasterButton.setMessage(new LiteralText("Cancel Toaster"));
+                        cancelToasterButton.setMessage(new TranslatableText("mcsrleague.dumb.canceltoaster"));
                     }
                 }));
                 randomButton.setAlpha(0.0f);

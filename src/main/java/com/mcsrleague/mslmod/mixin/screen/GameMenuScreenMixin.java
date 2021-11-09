@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import org.spongepowered.asm.mixin.Final;
@@ -46,7 +45,7 @@ public abstract class GameMenuScreenMixin extends Screen {
             lanButton.active = false;
             buttons.remove(sqButton);
             children.remove(sqButton);
-            addButton(new ButtonWidget(sqButton.x, sqButton.y, sqButton.getWidth(), sqButton.getHeight(), new LiteralText("Exit Options..."), button -> {
+            addButton(new ButtonWidget(sqButton.x, sqButton.y, sqButton.getWidth(), sqButton.getHeight(), new TranslatableText("mcsrleague.game.exit"), button -> {
                 client.openScreen(new ExitOptionsScreen(this));
             }));
         }

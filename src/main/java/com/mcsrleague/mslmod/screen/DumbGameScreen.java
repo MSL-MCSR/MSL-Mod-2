@@ -1,12 +1,13 @@
 package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.DumbUtil;
-import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.widget.UnselectableButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,10 @@ public class DumbGameScreen extends Screen {
     private String clicksString;
     private List<Long> presses;
     private int clicks;
+    private Text unlockText;
 
     public DumbGameScreen(Screen parent) {
-        super(new LiteralText("Dumb Game"));
+        super(new TranslatableText("mcsrleague.dumb.canceltoaster"));
         this.parent = parent;
         random = new Random();
     }
@@ -43,6 +45,7 @@ public class DumbGameScreen extends Screen {
         clicksString = "Clicks: 0";
         clicks = 0;
         presses = new ArrayList<>();
+        unlockText = new TranslatableText("mcsrleague.dumb.unlock");
     }
 
     @Override
@@ -54,7 +57,7 @@ public class DumbGameScreen extends Screen {
 
         if (justUnlocked) {
             if (System.currentTimeMillis() - unlockTime < 10000) {
-                drawCenteredString(matrices, textRenderer, "Cancel Toaster button is now unlocked in the options menu.", width / 2, height / 2, 16777215);
+                drawCenteredText(matrices, textRenderer, unlockText, width / 2, height / 2, 16777215);
             } else {
                 justUnlocked = false;
             }

@@ -5,12 +5,13 @@ import com.mcsrleague.mslmod.infograbber.InfoGrabber;
 import com.mcsrleague.mslmod.mixin.access.MinecraftClientAccess;
 import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
 import com.mcsrleague.mslmod.session.SeedSession;
+import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
 
@@ -18,8 +19,6 @@ import java.util.*;
 
 public class PlayMSLScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
-    private static final Identifier CANCEL = new Identifier("mcsrleague:textures/gui/button/cancel.png");
-    private static final Identifier COPY_ERROR = new Identifier("mcsrleague:textures/gui/button/copy_error.png");
 
     private final InfoGrabber infoGrabber;
     private Text grabText;
@@ -35,6 +34,7 @@ public class PlayMSLScreen extends Screen {
     private int color;
     private long pressedEsc;
 
+    private Text escWarnText;
     private ButtonWidget cancelButton;
 
     private List<Text> errorTexts;
@@ -42,10 +42,10 @@ public class PlayMSLScreen extends Screen {
     private String errorMessage;
 
     public PlayMSLScreen(InfoGrabber infoGrabber) {
-        super(new LiteralText("Play MSL"));
+        super(new TranslatableText("mcsrleague.title.play"));
         this.infoGrabber = infoGrabber;
-        grabText = new LiteralText("");
-        countdownText = new LiteralText("Waiting for information before countdown...");
+        grabText = LiteralText.EMPTY;
+        countdownText = new TranslatableText("mcsrleague.play.waiting");
         stage = 0;
         closed = false;
         color = 16777215;
@@ -101,7 +101,7 @@ public class PlayMSLScreen extends Screen {
             }
         }
 
-        if( optionalLong4.isPresent()){
+        if (optionalLong4.isPresent()) {
             return optionalLong4.getAsLong();
         } else {
             return 0L;
@@ -132,7 +132,7 @@ public class PlayMSLScreen extends Screen {
             if (closed) {
                 break;
             }
-            grabText = new LiteralText("Retrieving Information (Try " + (tries + 1) + "/10)");
+            grabText = new TranslatableText("mcsrleague.play.retreiving").append(new LiteralText(" (")).append(new TranslatableText("mcsrleague.play.try")).append(new LiteralText(" " + (tries + 1) + "/10)"));
             forceRender();
             grabbedInfo = infoGrabber.fullGrab();
             if (grabbedInfo != null) {
@@ -146,21 +146,23 @@ public class PlayMSLScreen extends Screen {
     @Override
     protected void init() {
         if (stage == 100) {
-            addButton(new TexturedButtonWidget(width / 2 - 40, height - 25, 80, 20, 0, 0, 20, COPY_ERROR, 80, 40, button -> {
+            addButton(new MSLButtonWidget(width / 2 - 40, height - 25, 80, 20, new TranslatableText("mcsrleague.play.copyerror"), button -> {
                 assert client != null;
                 client.keyboard.setClipboard(errorMessage);
             }));
         }
-        cancelButton = addButton(new TexturedButtonWidget(width - 84, height - 24, 80, 20, 0, 0, 20, CANCEL, 80, 40, button -> onClose()));
+        cancelButton = addButton(new MSLButtonWidget(width - 84, height - 24, 80, 20, new TranslatableText("mcsrleague.play.cancel"), button -> onClose()));
+        escWarnText = new TranslatableText("mcsrleague.play.escwarn");
     }
 
     @Override
     public void tick() {
         if (stage > 0 && stage < 100) {
             timeLeft = getTimeLeft();
-            countdownText = timeLeft <= 10 && timeLeft > 0 ? new LiteralText("Starting soon") : new LiteralText("Starting in " + getTimeLeftString(timeLeft) + "...");
+            countdownText = timeLeft <= 10 && timeLeft > 0 ? new TranslatableText("mcsrleague.play.soon") : new TranslatableText("mcsrleague.play.starting").append(new LiteralText(" " + getTimeLeftString(timeLeft) + "..."));
+
         } else if (stage == 100) {
-            countdownText = new LiteralText("Failed to connect to MSL.");
+            countdownText = new TranslatableText("mcsrleague.play.fail");
             color = 16737380;
         }
         switch (stage) {
@@ -202,7 +204,7 @@ public class PlayMSLScreen extends Screen {
             } else {
                 worldSeed = info.seed;
                 stage = 2;
-                if(info.dropSeed != null){
+                if (info.dropSeed != null) {
                     dropSeed = info.dropSeed;
                     hasDropSeed = true;
                     System.out.println(dropSeed);
@@ -280,7 +282,7 @@ public class PlayMSLScreen extends Screen {
         }
 
         if (pressedEsc - System.currentTimeMillis() > 0) {
-            drawCenteredString(matrices, textRenderer, "Cancel to Exit", cancelButton.x + cancelButton.getWidth() / 2, cancelButton.y - 10, 16777215);
+            drawCenteredText(matrices, textRenderer, escWarnText, cancelButton.x + cancelButton.getWidth() / 2, cancelButton.y - 10, 16777215);
         }
     }
 
@@ -301,7 +303,7 @@ public class PlayMSLScreen extends Screen {
 
     private void waitForStartStage() {
         if (System.currentTimeMillis() > seedStart) {
-            if(hasDropSeed) {
+            if (hasDropSeed) {
                 SpeedrunRandomHelper.setOverride(stringToSeed(dropSeed));
             }
             SeedSession.createLevel(worldSeed, this);
