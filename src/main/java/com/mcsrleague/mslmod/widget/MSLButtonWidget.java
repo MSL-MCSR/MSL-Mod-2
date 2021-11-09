@@ -15,7 +15,7 @@ public class MSLButtonWidget extends ButtonWidget {
         super(x, y, width, height, message, onPress);
     }
 
-    protected int getTextColor(){
+    protected int getTextColor() {
         return isHovered() ? 0 : 16777215;
     }
 
@@ -32,6 +32,6 @@ public class MSLButtonWidget extends ButtonWidget {
         this.drawTexture(matrices, this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height);
         this.drawTexture(matrices, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
         this.renderBg(matrices, minecraftClient, mouseX, mouseY);
-        textRenderer.draw(matrices, getMessage(), (x + (float) width / 2) - (float) textRenderer.getWidth(getMessage()) / 2, this.y + (float) (this.height - 8) / 2, getTextColor());
+        textRenderer.draw(matrices, getMessage(), ((x + width / 2) - textRenderer.getWidth(getMessage()) / 2), this.y + (this.height - 8) / 2, getTextColor());
     }
 }
