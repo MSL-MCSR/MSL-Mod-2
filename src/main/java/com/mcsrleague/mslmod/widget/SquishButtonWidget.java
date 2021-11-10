@@ -7,16 +7,12 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 
-public class MSLButtonWidget extends ButtonWidget {
-    protected static final Identifier WIDGETS_LOCATION = new Identifier("mcsrleague:textures/gui/widgets.png");
+public class SquishButtonWidget extends ButtonWidget {
 
-    public MSLButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress) {
+    public SquishButtonWidget(int x, int y, int width, int height, Text message, PressAction onPress) {
         super(x, y, width, height, message, onPress);
-    }
-
-    protected int getTextColor() {
-        return isHovered() ? 0 : 16777215;
     }
 
     @Override
@@ -40,7 +36,8 @@ public class MSLButtonWidget extends ButtonWidget {
             matrices.scale(scale, 1, 1);
             tWidth = maxWidth;
         }
-        textRenderer.draw(matrices, getMessage(), (x + (width - tWidth) / 2) / scale, this.y + (this.height - 8) / 2, getTextColor());
+        int j = this.active ? 16777215 : 10526880;
+        textRenderer.drawWithShadow(matrices, getMessage(), (x + (width - tWidth) / 2) / scale, this.y + (this.height - 8) / 2, j | MathHelper.ceil(this.alpha * 255.0F) << 24);
         matrices.scale(1 / scale, 1, 1);
     }
 }

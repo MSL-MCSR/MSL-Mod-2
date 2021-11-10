@@ -1,0 +1,69 @@
+{
+  "mcsrleague.completion.title": "Intento oficial completado",
+  "mcsrleague.completion.token": "Copiar token",
+  "mcsrleague.completion.done": "Listo",
+  "mcsrleague.completion.tokeninfo": "Semilla completada! Por favor, envia tu token!",
+  "mcsrleague.completion.copywarning": "Primero debes copiar tu token!",
+
+  "mcsrleague.continue.title": "Seguir Jugando?",
+  "mcsrleague.continue.continue": "Continuar",
+  "mcsrleague.continue.quit": "Salir",
+  "mcsrleague.continue.warning": "Presionar nuevamente anulará el intento y no recibiras ningun punto.",
+
+  "mcsrleague.seed.title": "Jugar semilla personalizada",
+  "mcsrleague.seed.create": "Crear",
+  "mcsrleague.seed.cancel": "Cancelar",
+  "mcsrleague.seed.worldseed": "Semilla de Mundo",
+  "mcsrleague.seed.dropseed": "Semilla de Drops (Tradeos, etc.)",
+
+  "mcsrleague.dumb.unlock": "El boton Cancelar Tostadora se ha desbloqueado en el menu de opciones.",
+  "mcsrleague.dumb.canceltoaster": "Cancelar Tostadora",
+
+  "mcsrleague.exit.title": "Opciones de Salida",
+  "mcsrleague.exit.reload": "Recargar Mundo",
+  "mcsrleague.exit.restart": "Reiniciar Intento",
+  "mcsrleague.exit.forfeit": "Anular Intento",
+  "mcsrleague.exit.confirm": "Click aquí de nuevo para anular el Intento.",
+
+  "mcsrleague.credits.title": "Créditos de la MSL",
+  "mcsrleague.credits.staff": "Staff",
+  "mcsrleague.credits.moddev": "Desarrollador del Mod",
+  "mcsrleague.credits.art": "Arte & Diseño",
+  "mcsrleague.credits.webdev": "Desarrolladora de la Web y la API",
+  "mcsrleague.credits.streamer": "Streamer y Organizador de la Comunidad",
+  "mcsrleague.credits.testers": "Mod Testers",
+  "mcsrleague.credits.done": "Listo",
+
+  "mcsrleague.options.title": "Opciones y Extras de la MSL",
+  "mcsrleague.options.done": "Listo",
+  "mcsrleague.options.difficulty": "Dificultad Inicial",
+  "mcsrleague.options.easy": "Fácil",
+  "mcsrleague.options.normal": "Normal",
+  "mcsrleague.options.hard": "Difícil",
+  "mcsrleague.options.other": "Otros",
+  "mcsrleague.options.testrace": "Intento de prueba",
+  "mcsrleague.options.customseed": "Semilla personalizada",
+  "mcsrleague.options.credits": "Ver Créditos",
+
+  "mcsrleague.web.title": "Abrir Web",
+  "mcsrleague.web.home": "Menú",
+  "mcsrleague.web.faq": "Reglas/FAQ",
+  "mcsrleague.web.leaderboard": "Leaderboard",
+
+  "mcsrleague.play.waiting": "Esperando información antes de la cuenta atrás...",
+  "mcsrleague.play.retreiving": "Descargando Información",
+  "mcsrleague.play.try": "Reintentar",
+  "mcsrleague.play.copyerror": "Copiar Error",
+  "mcsrleague.play.cancel": "Cancelar",
+  "mcsrleague.play.soon": "Empieza pronto",
+  "mcsrleague.play.starting": "Empezando",
+  "mcsrleague.play.fail": "Fallo al contactar los servidores de la MSL.",
+  "mcsrleague.play.escwarn": "Cancelar para Salir",
+
+  "mcsrleague.title.play": "Jugar MSL",
+
+  "mcsrleague.game.noseed": "No puede usar /seed en intentos oficiales!",
+  "mcsrleague.game.exit": "Opciones de Salida...",
+
+  "mcsrleague.warning.incompatible": "Se encontraron Mods incompatibles. Por favor, remover los siguientes Mods"
+}

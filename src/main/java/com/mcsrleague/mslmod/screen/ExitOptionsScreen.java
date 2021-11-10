@@ -3,6 +3,7 @@ package com.mcsrleague.mslmod.screen;
 import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
 import com.mcsrleague.mslmod.session.SeedSession;
+import com.mcsrleague.mslmod.widget.SquishButtonWidget;
 import net.minecraft.client.gui.screen.SaveLevelScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -32,13 +33,13 @@ public class ExitOptionsScreen extends Screen {
 
     @Override
     protected void init() {
-        addButton(new ButtonWidget(width / 2 - 102, height / 4 + 104, 204, 20, new TranslatableText("mcsrleague.exit.reload"), button -> {
+        addButton(new SquishButtonWidget(width / 2 - 102, height / 4 + 104, 204, 20, new TranslatableText("mcsrleague.exit.reload"), button -> {
             MSLMod.doRelog();
             exitWorld(button);
             MSLMod.eo().unpause();
             MSLMod.eo().mark(4);
         }));
-        addButton(new ButtonWidget(width / 2 - 102, height / 4 + 72 - 16, 98, 20, new TranslatableText("mcsrleague.exit.restart"), button -> {
+        addButton(new SquishButtonWidget(width / 2 - 102, height / 4 + 72 - 16, 98, 20, new TranslatableText("mcsrleague.exit.restart"), button -> {
             assert client != null;
             MSLMod.eo().unpause();
             String seed = String.valueOf(Objects.requireNonNull(Objects.requireNonNull(client.getServer()).getWorld(World.OVERWORLD)).getSeed());
@@ -47,7 +48,7 @@ public class ExitOptionsScreen extends Screen {
             SpeedrunRandomHelper.setOverride(SpeedrunRandomHelper.getCurrentSeed());
             SeedSession.createLevel(seed, null, start);
         }));
-        forfeitButton = addButton(new ButtonWidget(width / 2 + 4, height / 4 + 72 - 16, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
+        forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 72 - 16, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
             if (!pressedForfeit) {
                 pressedForfeit = true;
             } else {

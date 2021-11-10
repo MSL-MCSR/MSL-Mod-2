@@ -1,5 +1,6 @@
 package com.mcsrleague.mslmod.screen;
 
+import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -19,13 +20,13 @@ public class OpenWebScreen extends Screen {
     @Override
     protected void init() {
         parent.init(client, width, height);
-        addButton(new ButtonWidget(width / 2 - 62, height / 2, 60, 20, new TranslatableText("mcsrleague.web.home"), button -> {
+        addButton(new MSLButtonWidget(width / 2 - 62, height / 2, 60, 20, new TranslatableText("mcsrleague.web.home"), button -> {
             Util.getOperatingSystem().open("https://mcsrleague.com/");
         }));
-        addButton(new ButtonWidget(width / 2 + 2, height / 2, 60, 20, new TranslatableText("mcsrleague.web.faq"), button -> {
+        addButton(new MSLButtonWidget(width / 2 + 2, height / 2, 60, 20, new TranslatableText("mcsrleague.web.faq"), button -> {
             Util.getOperatingSystem().open("https://mcsrleague.com/faq/");
         }));
-        addButton(new ButtonWidget(width / 2 - 40, height / 2 + 24, 80, 20, new TranslatableText("mcsrleague.web.leaderboard"), button -> {
+        addButton(new MSLButtonWidget(width / 2 - 40, height / 2 + 24, 80, 20, new TranslatableText("mcsrleague.web.leaderboard"), button -> {
             Util.getOperatingSystem().open("https://mcsrleague.com/leaderboard/week/");
         }));
     }

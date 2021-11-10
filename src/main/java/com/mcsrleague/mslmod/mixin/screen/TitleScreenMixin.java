@@ -4,6 +4,7 @@ import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.WarningModsUtil;
 import com.mcsrleague.mslmod.infograbber.HttpsInfoGrabber;
 import com.mcsrleague.mslmod.screen.*;
+import com.mcsrleague.mslmod.widget.SquishButtonWidget;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
@@ -52,7 +53,7 @@ public abstract class TitleScreenMixin extends Screen {
 
         });
 
-        ButtonWidget playMSLButton = new ButtonWidget(width / 2 - 76, y + spacingY * 2, 152, 20, new TranslatableText("mcsrleague.title.play").formatted(Formatting.WHITE).formatted(Formatting.BOLD), button -> {
+        ButtonWidget playMSLButton = new SquishButtonWidget(width / 2 - 76, y + spacingY * 2, 152, 20, new TranslatableText("mcsrleague.title.play").formatted(Formatting.WHITE).formatted(Formatting.BOLD), button -> {
             client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/seed/" + FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion())));
         });
         AbstractButtonWidget optionsMSLButton = new TexturedButtonWidget(width / 2 + 80, y + spacingY * 2, 20, 20, 0, 0, 20, OPTIONS, 20, 40, button -> {

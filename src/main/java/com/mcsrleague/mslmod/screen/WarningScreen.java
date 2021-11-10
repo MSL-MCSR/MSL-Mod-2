@@ -1,9 +1,9 @@
 package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.WarningModsUtil;
+import com.mcsrleague.mslmod.widget.SquishButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.AbstractButtonWidget;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -32,10 +32,10 @@ public class WarningScreen extends Screen {
     @Override
     protected void init() {
         assert this.client != null;
-        quitButton = this.addButton(new ButtonWidget(this.width - 102, height - 24, 98, 20, new TranslatableText("menu.quit"), (buttonWidget) -> {
+        quitButton = this.addButton(new SquishButtonWidget(this.width - 102, height - 24, 98, 20, new TranslatableText("menu.quit"), (buttonWidget) -> {
             this.client.scheduleStop();
         }));
-        continueButton = this.addButton(new ButtonWidget(this.width - 102, height - 48, 98, 20, new LiteralText("Continue Anyway"), (buttonWidget) -> {
+        continueButton = this.addButton(new SquishButtonWidget(this.width - 102, height - 48, 98, 20, new LiteralText("Continue Anyway"), (buttonWidget) -> {
             if(hasShiftDown()){
                 WarningModsUtil.setBypass();
                 onClose();

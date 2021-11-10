@@ -3,10 +3,10 @@ package com.mcsrleague.mslmod.mixin.screen;
 import com.mcsrleague.mslmod.DumbUtil;
 import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.screen.DumbGameScreen;
+import com.mcsrleague.mslmod.widget.SquishButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.options.OptionsScreen;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -30,7 +30,7 @@ public abstract class OptionsScreenMixin extends Screen {
     private void initMixin(CallbackInfo info) {
         assert this.client != null;
         if (DumbUtil.isDumbUnlocked()) {
-            addButton(new ButtonWidget(4, height - 24, 90, 20, new TranslatableText("mcsrleague.dumb.canceltoaster"), button -> {
+            addButton(new SquishButtonWidget(4, height - 24, 90, 20, new TranslatableText("mcsrleague.dumb.canceltoaster"), button -> {
                 this.client.openScreen(new DumbGameScreen(this));
             }));
         }
