@@ -11,9 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class ServerPlayNetworkHandlerMixin implements ServerPlayPacketListener {
-    @Shadow private int messageCooldown;
+    @Shadow
+    private int messageCooldown;
 
-    @Inject(method = "onGameMessage",at=@At("HEAD"))
+    @Inject(method = "onGameMessage", at = @At("HEAD"))
     public void preventSpamKickMixin(ChatMessageC2SPacket packet, CallbackInfo ci) {
         this.messageCooldown = 0;
     }

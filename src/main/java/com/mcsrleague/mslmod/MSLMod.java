@@ -1,9 +1,7 @@
 package com.mcsrleague.mslmod;
 
 import com.mcsrleague.mslmod.session.SeedSession;
-import jdk.jfr.events.FileWriteEvent;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.village.TradeOffers;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,12 +47,12 @@ public class MSLMod implements ModInitializer {
 
     public static void complete(String token) {
         MSLMod.token = token;
-        try{
+        try {
             FileWriter fileWriter = new FileWriter("mcsrleague/lasttoken.txt");
             fileWriter.write(token);
             fileWriter.close();
         } catch (IOException e) {
-            MSLMod.log(Level.ERROR,"Could not save token to lasttoken.txt.");
+            MSLMod.log(Level.ERROR, "Could not save token to lasttoken.txt.");
             e.printStackTrace();
         }
     }

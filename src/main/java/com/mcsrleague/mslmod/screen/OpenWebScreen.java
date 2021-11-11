@@ -2,7 +2,6 @@ package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
@@ -44,6 +43,7 @@ public class OpenWebScreen extends Screen {
         drawCenteredText(matrices, textRenderer, title, width / 2, height / 2 - 15, 16777215);
         super.render(matrices, mouseX, mouseY, delta);
         matrices.scale(1f / 16f, 1f / 16f, 1f / 16f);
+        assert client != null;
         client.getTextureManager().bindTexture(MSL_LOGO);
         drawTexture(matrices, 16 * (width / 2 - 32), 16 * (height / 2 - 47), 0.0F, 0.0F, 1024, 512, 1024, 512);
     }

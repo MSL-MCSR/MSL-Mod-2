@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class TestSeedInfoGrabber extends InfoGrabber {
 
-    private boolean isFast;
+    private final boolean isFast;
 
     public TestSeedInfoGrabber(boolean isFast) {
         this.isFast = isFast;

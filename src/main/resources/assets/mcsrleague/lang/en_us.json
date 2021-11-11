@@ -59,6 +59,9 @@
   "mcsrleague.play.starting": "Starting in",
   "mcsrleague.play.fail": "Failed to connect to MSL.",
   "mcsrleague.play.escwarn": "Cancel to Exit",
+  "mcsrleague.play.download": "Download",
+  "mcsrleague.play.ood": "Your mod version is out of date.",
+  "mcsrleague.play.downloadmsg": "Please download the latest version",
 
   "mcsrleague.title.play": "Play MSL",
 

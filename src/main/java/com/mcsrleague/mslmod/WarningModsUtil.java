@@ -43,6 +43,7 @@ public abstract class WarningModsUtil {
         return new ArrayList<>(foundWarningMods);
     }
 
+    // Custom names for mods can be listed here to replace the default metadata name of the mod
     private static void genWarningMods() {
         warningMods = new HashMap<>();
         warningMods.put("fast_reset", "Fast Reset");

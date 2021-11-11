@@ -59,6 +59,9 @@
   "mcsrleague.play.starting": "Empezando",
   "mcsrleague.play.fail": "Fallo al contactar los servidores de la MSL.",
   "mcsrleague.play.escwarn": "Cancelar para Salir",
+  "mcsrleague.play.download": "Descargar",
+  "mcsrleague.play.ood": "La versión de tu mod esta desactualizada.",
+  "mcsrleague.play.downloadmsg": "Por favor descarga la versión mas reciente",
 
   "mcsrleague.title.play": "Jugar MSL",
 

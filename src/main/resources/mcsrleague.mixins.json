@@ -16,6 +16,7 @@
     "game.MinecraftClientMixin",
     "game.MinecraftServerMixin",
     "game.PiglinBrainMixin",
+    "game.PillagerOutpostGeneratorMixin",
     "game.SeedCommandMixin",
     "game.ServerPlayerEntityMixin",
     "game.ServerPlayNetworkHandlerMixin",

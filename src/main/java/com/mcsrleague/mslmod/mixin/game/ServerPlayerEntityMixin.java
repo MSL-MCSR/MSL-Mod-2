@@ -14,12 +14,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(ServerPlayerEntity.class)
 public abstract class ServerPlayerEntityMixin {
-    @Shadow private boolean seenCredits;
+    @Shadow
+    private boolean seenCredits;
 
-    @Shadow public abstract ServerWorld getServerWorld();
+    @Shadow
+    public abstract ServerWorld getServerWorld();
 
-    @Inject(method = "changeDimension",at=@At("HEAD"))
-    private void onSpeedrunEndMixin(ServerWorld destination, CallbackInfoReturnable<Entity> info){
+    @Inject(method = "changeDimension", at = @At("HEAD"))
+    private void onSpeedrunEndMixin(ServerWorld destination, CallbackInfoReturnable<Entity> info) {
         ServerWorld serverWorld = getServerWorld();
         RegistryKey<World> registryKey = serverWorld.getRegistryKey();
         if (MSLMod.ooml() && registryKey.equals(World.END) && destination.getRegistryKey().equals(World.OVERWORLD) && !seenCredits) {

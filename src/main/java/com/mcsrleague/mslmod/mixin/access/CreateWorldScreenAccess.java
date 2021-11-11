@@ -13,11 +13,11 @@ public interface CreateWorldScreenAccess {
     TextFieldWidget getLevelNameField();
 
     @Invoker("createLevel")
-    public void invokeCreateLevel();
+    void invokeCreateLevel();
 
     @Accessor
-    public void setField_24289(Difficulty field_24289);
+    void setField_24289(Difficulty field_24289);
 
     @Accessor
-    public void setField_24290(Difficulty field_24290);
+    void setField_24290(Difficulty field_24290);
 }

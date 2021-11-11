@@ -3,8 +3,6 @@ package com.mcsrleague.mslmod.infograbber;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
-import java.io.IOException;
-
 public abstract class InfoGrabber {
     private String error;
 
@@ -23,10 +21,10 @@ public abstract class InfoGrabber {
             }
             try {
                 GrabbedInfoJson grabbedInfoJson = new Gson().fromJson(grabString, GrabbedInfoJson.class);
-                if(grabbedInfoJson.exception != null){
+                if (grabbedInfoJson.exception != null) {
                     grabbedInfoJson.error = grabbedInfoJson.exception;
                 }
-                if(grabbedInfoJson.error != null){
+                if (grabbedInfoJson.error != null) {
                     error = grabbedInfoJson.error;
                     return null;
                 }

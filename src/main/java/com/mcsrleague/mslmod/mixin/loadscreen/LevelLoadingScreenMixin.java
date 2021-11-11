@@ -35,12 +35,12 @@ public abstract class LevelLoadingScreenMixin extends Screen {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void renderMixin(MatrixStack matrices, int mouseX, int mouseY, float delta, CallbackInfo info) {
         if (MSLMod.ooml()) {
-            mslRender(matrices, mouseX, mouseY, delta);
+            mslRender(matrices);
             info.cancel();
         }
     }
 
-    private void mslRender(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+    private void mslRender(MatrixStack matrices) {
         fill(matrices, 0, 0, width, height, -15724528);
         assert client != null;
         client.getTextureManager().bindTexture(MSL_LOGO);

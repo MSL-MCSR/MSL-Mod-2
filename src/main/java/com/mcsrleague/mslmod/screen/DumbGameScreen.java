@@ -94,6 +94,7 @@ public class DumbGameScreen extends Screen {
     }
 
     public void onClose() {
+        assert this.client != null;
         this.client.openScreen(this.parent);
     }
 

@@ -32,7 +32,7 @@ public abstract class DumbGameMenuScreenMixin extends Screen {
         do {
             x = random.nextInt(width - 20);
             y = random.nextInt(height - 20);
-            attempts += -1;
+            attempts -= 1;
         } while ((((x + 20) > (width / 2 - 102) && x < (width / 2 + 102) && (y + 20) > (height / 4 + 8) && (y < (height / 4 + 124))) || (x < 70 && (y + 40) < height)) && attempts > 0);
         if (attempts == 0) {
             return null;

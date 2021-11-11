@@ -17,11 +17,11 @@ public abstract class CreditsScreenMixin extends Screen {
         super(title);
     }
 
-    @Inject(method="init",at=@At("TAIL"))
-    private void initMixin(CallbackInfo info){
+    @Inject(method = "init", at = @At("TAIL"))
+    private void initMixin(CallbackInfo info) {
         assert client != null;
-        if(MSLMod.isCompleted() && !WarningModsUtil.hasBypass()){
-            client.openScreen(new CompletionScreen(MSLMod.takeToken(),this));
+        if (MSLMod.isCompleted() && !WarningModsUtil.hasBypass()) {
+            client.openScreen(new CompletionScreen(MSLMod.takeToken(), this));
         }
     }
 }

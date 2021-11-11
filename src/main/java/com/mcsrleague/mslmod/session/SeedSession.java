@@ -54,7 +54,7 @@ public class SeedSession {
     private boolean hasLongPause;
     private long pauseStart;
 
-    public SeedSession(String worldSeed) {
+    public SeedSession() {
         creationTime = System.currentTimeMillis();
         playing = true;
         init();
@@ -97,7 +97,7 @@ public class SeedSession {
     }
 
     public static void createLevel(String worldSeed, Screen parent, Long startTime) {
-        SeedSession oeoe = new SeedSession(worldSeed);
+        SeedSession oeoe = new SeedSession();
         MSLMod.oem(oeoe);
 
         CreateWorldScreen createWorldScreen = new CreateWorldScreen(parent);

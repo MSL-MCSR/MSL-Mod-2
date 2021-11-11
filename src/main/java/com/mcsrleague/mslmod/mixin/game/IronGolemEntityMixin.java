@@ -18,6 +18,6 @@ public abstract class IronGolemEntityMixin extends GolemEntity implements Angera
 
     @Override
     protected void dropLoot(DamageSource source, boolean causedByPlayer) {
-        dropStack(new ItemStack(Items.IRON_INGOT,5));
+        dropStack(new ItemStack(Items.IRON_INGOT, 5));
     }
 }

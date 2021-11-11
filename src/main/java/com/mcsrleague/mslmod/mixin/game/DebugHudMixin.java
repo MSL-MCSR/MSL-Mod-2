@@ -10,8 +10,8 @@ import java.util.List;
 
 @Mixin(DebugHud.class)
 public abstract class DebugHudMixin {
-    @Inject(method="getLeftText",at=@At("RETURN"),cancellable = true)
-    private void addDebugLineMixin(CallbackInfoReturnable<List<String>> info){
+    @Inject(method = "getLeftText", at = @At("RETURN"), cancellable = true)
+    private void addDebugLineMixin(CallbackInfoReturnable<List<String>> info) {
         info.getReturnValue().add("MSL Mod Loaded");
     }
 }

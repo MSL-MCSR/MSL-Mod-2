@@ -11,9 +11,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(CreateWorldScreen.class)
 public abstract class CreateWorldScreenMixin {
-    @Inject(method = "createLevel",at=@At("HEAD"))
-    private void createLevelMixin(CallbackInfo ci){
-        if(WarningModsUtil.isTm() && (!MSLMod.ooml()) && (!SpeedrunRandomHelper.hasOverride())){
+    @Inject(method = "createLevel", at = @At("HEAD"))
+    private void createLevelMixin(CallbackInfo ci) {
+        if (WarningModsUtil.isTm() && (!MSLMod.ooml()) && (!SpeedrunRandomHelper.hasOverride())) {
             SpeedrunRandomHelper.setOverride(487317577770548373L);
         }
     }

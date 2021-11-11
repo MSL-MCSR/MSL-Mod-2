@@ -13,6 +13,8 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Language;
+import net.minecraft.util.Util;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -21,6 +23,7 @@ public class PlayMSLScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
 
     private final InfoGrabber infoGrabber;
+    private final Text escWarnText;
     private Text grabText;
     private Text countdownText;
     private int stage;
@@ -33,8 +36,7 @@ public class PlayMSLScreen extends Screen {
     private boolean closed;
     private int color;
     private long pressedEsc;
-
-    private Text escWarnText;
+    private boolean hasDownloadButton;
     private ButtonWidget cancelButton;
 
     private List<Text> errorTexts;
@@ -50,6 +52,8 @@ public class PlayMSLScreen extends Screen {
         closed = false;
         color = 16777215;
         pressedEsc = 0;
+        hasDownloadButton = false;
+        escWarnText = new TranslatableText("mcsrleague.play.escwarn");
     }
 
 
@@ -97,7 +101,7 @@ public class PlayMSLScreen extends Screen {
             if (optionalLong2.isPresent() && optionalLong2.getAsLong() != 0L) {
                 optionalLong4 = optionalLong2;
             } else {
-                optionalLong4 = OptionalLong.of((long) string.hashCode());
+                optionalLong4 = OptionalLong.of(string.hashCode());
             }
         }
 
@@ -146,13 +150,18 @@ public class PlayMSLScreen extends Screen {
     @Override
     protected void init() {
         if (stage == 100) {
-            addButton(new MSLButtonWidget(width / 2 - 40, height - 25, 80, 20, new TranslatableText("mcsrleague.play.copyerror"), button -> {
-                assert client != null;
-                client.keyboard.setClipboard(errorMessage);
-            }));
+            if (hasDownloadButton) {
+                addButton(new MSLButtonWidget(width / 2 - 40, height / 2 + 50, 80, 20, new TranslatableText("mcsrleague.play.download"), button -> {
+                    Util.getOperatingSystem().open("https://mcsrleague.com/api/mod/download/");
+                }));
+            } else {
+                addButton(new MSLButtonWidget(width / 2 - 40, height - 25, 80, 20, new TranslatableText("mcsrleague.play.copyerror"), button -> {
+                    assert client != null;
+                    client.keyboard.setClipboard(errorMessage);
+                }));
+            }
         }
         cancelButton = addButton(new MSLButtonWidget(width - 84, height - 24, 80, 20, new TranslatableText("mcsrleague.play.cancel"), button -> onClose()));
-        escWarnText = new TranslatableText("mcsrleague.play.escwarn");
     }
 
     @Override
@@ -207,7 +216,6 @@ public class PlayMSLScreen extends Screen {
                 if (info.dropSeed != null) {
                     dropSeed = info.dropSeed;
                     hasDropSeed = true;
-                    System.out.println(dropSeed);
                 }
             }
         } else {
@@ -234,6 +242,13 @@ public class PlayMSLScreen extends Screen {
         if (message == null) {
             message = "Error is null";
         }
+
+        if (message.startsWith("OOD ")) {
+            String version = message.replace("OOD ", "");
+            message = Language.getInstance().get("mcsrleague.play.ood") + "\n" + Language.getInstance().get("mcsrleague.play.downloadmsg") + " (" + version + ").";
+            hasDownloadButton = true;
+        }
+
         errorMessage = message;
 
         int max = 0;

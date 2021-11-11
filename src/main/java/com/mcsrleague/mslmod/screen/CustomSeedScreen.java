@@ -16,8 +16,6 @@ import java.util.OptionalLong;
 
 public class CustomSeedScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
-    private static final Identifier CREATE = new Identifier("mcsrleague:textures/gui/button/create.png");
-    private static final Identifier CANCEL = new Identifier("mcsrleague:textures/gui/button/cancel.png");
 
     private final Screen parent;
 
@@ -44,7 +42,7 @@ public class CustomSeedScreen extends Screen {
             if (optionalLong2.isPresent() && optionalLong2.getAsLong() != 0L) {
                 optionalLong4 = optionalLong2;
             } else {
-                optionalLong4 = OptionalLong.of((long) string.hashCode());
+                optionalLong4 = OptionalLong.of(string.hashCode());
             }
         }
 
