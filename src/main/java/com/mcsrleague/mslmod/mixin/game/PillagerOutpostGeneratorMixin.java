@@ -36,7 +36,8 @@ public abstract class PillagerOutpostGeneratorMixin {
                                                                                 new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.5F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()),
                                                                                 new StructureProcessorRule(new BlockMatchRuleTest(Blocks.TORCH), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
                                                                                 new StructureProcessorRule(new BlockMatchRuleTest(Blocks.WALL_TORCH), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
-                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BIRCH_PLANKS, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState())
+                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BIRCH_PLANKS, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.WHITE_WALL_BANNER, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState())
                                                                         )
                                                                 )
                                                         )),
@@ -48,7 +49,8 @@ public abstract class PillagerOutpostGeneratorMixin {
                                                                                 new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.5F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()),
                                                                                 new StructureProcessorRule(new BlockMatchRuleTest(Blocks.TORCH), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
                                                                                 new StructureProcessorRule(new BlockMatchRuleTest(Blocks.WALL_TORCH), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
-                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BIRCH_PLANKS, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState())
+                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.BIRCH_PLANKS, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState()),
+                                                                                new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.WHITE_WALL_BANNER, 0.2F), AlwaysTrueRuleTest.INSTANCE, Blocks.AIR.getDefaultState())
                                                                         )
                                                                 )
                                                         ))
