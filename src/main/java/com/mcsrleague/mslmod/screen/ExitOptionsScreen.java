@@ -48,8 +48,9 @@ public class ExitOptionsScreen extends Screen {
             SpeedrunRandomHelper.setOverride(SpeedrunRandomHelper.getCurrentSeed());
             SeedSession.createLevel(seed, null, start);
         }));
-        forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 72 - 16, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
+        forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 56, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
             if (!pressedForfeit) {
+                forfeitButton.y = height / 4 + 16;
                 pressedForfeit = true;
             } else {
                 SeedSession oeoe = MSLMod.eo();
@@ -59,6 +60,9 @@ public class ExitOptionsScreen extends Screen {
                 exitWorld(button);
             }
         }));
+        if (pressedForfeit) {
+            forfeitButton.y = height / 4 + 16;
+        }
         confirmText = new TranslatableText("mcsrleague.exit.confirm");
     }
 
@@ -68,7 +72,7 @@ public class ExitOptionsScreen extends Screen {
         super.render(matrices, mouseX, mouseY, delta);
         drawCenteredText(matrices, textRenderer, title, width / 2, 40, 16777215);
         if (pressedForfeit) {
-            drawCenteredText(matrices, textRenderer, confirmText, forfeitButton.x + forfeitButton.getWidth() / 2, forfeitButton.y - 10, 16733525);
+            drawCenteredText(matrices, textRenderer, confirmText, forfeitButton.x + forfeitButton.getWidth() / 2, forfeitButton.y + 22, 16733525);
         }
     }
 
@@ -83,6 +87,7 @@ public class ExitOptionsScreen extends Screen {
 
         if (!super.mouseClicked(mouseX, mouseY, button)) {
             pressedForfeit = false;
+            forfeitButton.y = height / 4 + 56;
             return false;
         } else {
             return true;

@@ -2,7 +2,7 @@ import os
 
 def countPath(path: str):
     count = 0
-    if os.path.isfile(path):
+    if os.path.isfile(path) and path.endswith(".java"):
         count += countFile(path)
     elif os.path.isdir(path):
         for ext in os.listdir(path):
