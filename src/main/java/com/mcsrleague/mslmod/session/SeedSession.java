@@ -95,10 +95,6 @@ public class SeedSession {
         }
     }
 
-    public static void createLevel(String worldSeed, Screen parent) {
-        createLevel(worldSeed, parent, 0L, true);
-    }
-
     public static void createLevel(String worldSeed, Screen parent, boolean givesToken) {
         createLevel(worldSeed, parent, 0L, givesToken);
     }
@@ -273,7 +269,7 @@ public class SeedSession {
         String token = generateToken(player);
         end();
         save();
-        if (!WarningModsUtil.hasBypass()) {
+        if (givesToken && !WarningModsUtil.hasBypass()) {
             MSLMod.complete(token);
         }
     }
