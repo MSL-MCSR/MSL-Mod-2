@@ -2,6 +2,7 @@ package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.MSLOptions;
+import com.mcsrleague.mslmod.infograbber.HttpsInfoGrabber;
 import com.mcsrleague.mslmod.infograbber.TestSeedInfoGrabber;
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import com.mcsrleague.mslmod.widget.PickableMSLButtonWidget;
@@ -43,11 +44,7 @@ public class MSLOptionsScreen extends Screen {
         difficultyWidgetSet.pick(mslOptions.getDifficulty() - 1);
 
         addButton(new MSLButtonWidget(width / 2 - 154, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.testrace"), button -> {
-            if (hasShiftDown()) {
-                client.openScreen(new PlayMSLScreen(new TestSeedInfoGrabber(true)));
-            } else {
-                client.openScreen(new PlayMSLScreen(new TestSeedInfoGrabber(false)));
-            }
+            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/testseed")));
         }));
         addButton(new MSLButtonWidget(width / 2 - 50, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.customseed"), button -> {
             client.openScreen(new CustomSeedScreen(this));
