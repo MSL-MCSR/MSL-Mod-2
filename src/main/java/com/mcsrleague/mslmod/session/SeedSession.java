@@ -53,10 +53,12 @@ public class SeedSession {
     private boolean hasRelog;
     private boolean hasLongPause;
     private long pauseStart;
+    private boolean givesToken;
 
     public SeedSession() {
         creationTime = System.currentTimeMillis();
         playing = true;
+        givesToken = true;
         init();
     }
 
@@ -64,6 +66,7 @@ public class SeedSession {
         creationTime = saveInfo.creationTime;
         startTime = saveInfo.startTime;
         playing = saveInfo.playing;
+        givesToken = saveInfo.givesToken;
         init();
     }
 
@@ -93,11 +96,16 @@ public class SeedSession {
     }
 
     public static void createLevel(String worldSeed, Screen parent) {
-        createLevel(worldSeed, parent, 0L);
+        createLevel(worldSeed, parent, 0L, true);
     }
 
-    public static void createLevel(String worldSeed, Screen parent, Long startTime) {
+    public static void createLevel(String worldSeed, Screen parent, boolean givesToken) {
+        createLevel(worldSeed, parent, 0L, givesToken);
+    }
+
+    public static void createLevel(String worldSeed, Screen parent, Long startTime, boolean givesToken) {
         SeedSession oeoe = new SeedSession();
+        oeoe.setGivesToken(givesToken);
         MSLMod.oem(oeoe);
 
         CreateWorldScreen createWorldScreen = new CreateWorldScreen(parent);
@@ -119,6 +127,15 @@ public class SeedSession {
         }
         oeoe.setStartTime(startTime);
         oeoe.save();
+
+    }
+
+    public static void createLevel(String worldSeed, Screen parent, Long startTime) {
+        createLevel(worldSeed, parent, startTime, true);
+    }
+
+    public void setGivesToken(boolean givesToken) {
+        this.givesToken = givesToken;
     }
 
     public void pause() {
@@ -223,6 +240,7 @@ public class SeedSession {
         saveInfo.creationTime = creationTime;
         saveInfo.playing = playing;
         saveInfo.startTime = startTime;
+        saveInfo.givesToken = givesToken;
         Gson gson = new Gson();
         return gson.toJson(saveInfo);
     }

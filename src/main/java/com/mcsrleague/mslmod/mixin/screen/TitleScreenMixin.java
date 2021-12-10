@@ -54,7 +54,7 @@ public abstract class TitleScreenMixin extends Screen {
         });
 
         ButtonWidget playMSLButton = new SquishButtonWidget(width / 2 - 76, y + spacingY * 2, 152, 20, new TranslatableText("mcsrleague.title.play").formatted(Formatting.WHITE).formatted(Formatting.BOLD), button -> {
-            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/seed/" + FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion())));
+            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/seed/" + FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion()), true));
         });
         AbstractButtonWidget optionsMSLButton = new TexturedButtonWidget(width / 2 + 80, y + spacingY * 2, 20, 20, 0, 0, 20, OPTIONS, 20, 40, button -> {
             client.openScreen(new MSLOptionsScreen());

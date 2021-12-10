@@ -44,7 +44,7 @@ public class MSLOptionsScreen extends Screen {
         difficultyWidgetSet.pick(mslOptions.getDifficulty() - 1);
 
         addButton(new MSLButtonWidget(width / 2 - 154, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.testrace"), button -> {
-            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/testseed")));
+            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/testseed"),false));
         }));
         addButton(new MSLButtonWidget(width / 2 - 50, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.customseed"), button -> {
             client.openScreen(new CustomSeedScreen(this));

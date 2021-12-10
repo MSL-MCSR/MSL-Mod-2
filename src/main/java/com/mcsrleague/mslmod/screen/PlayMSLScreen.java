@@ -43,8 +43,11 @@ public class PlayMSLScreen extends Screen {
     private int errorOffset;
     private String errorMessage;
 
-    public PlayMSLScreen(InfoGrabber infoGrabber) {
+    private boolean givesToken;
+
+    public PlayMSLScreen(InfoGrabber infoGrabber, boolean givesToken) {
         super(new TranslatableText("mcsrleague.title.play"));
+        this.givesToken = givesToken;
         this.infoGrabber = infoGrabber;
         grabText = LiteralText.EMPTY;
         countdownText = new TranslatableText("mcsrleague.play.waiting");
@@ -321,7 +324,7 @@ public class PlayMSLScreen extends Screen {
             if (hasDropSeed) {
                 SpeedrunRandomHelper.setOverride(stringToSeed(dropSeed));
             }
-            SeedSession.createLevel(worldSeed, this);
+            SeedSession.createLevel(worldSeed, this, givesToken);
         }
     }
 

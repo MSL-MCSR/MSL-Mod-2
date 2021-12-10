@@ -80,7 +80,7 @@ public class CustomSeedScreen extends Screen {
                     dropSeedWidget.setText(worldSeedWidget.getText());
                 } else {
                     SpeedrunRandomHelper.setOverride(stringToSeed(dropSeedWidget.getText()));
-                    SeedSession.createLevel(worldSeedWidget.getText(), this);
+                    SeedSession.createLevel(worldSeedWidget.getText(), this, false);
                 }
             }
 
