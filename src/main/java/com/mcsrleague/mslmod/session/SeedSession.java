@@ -12,6 +12,8 @@ import net.minecraft.client.gui.screen.SaveLevelScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.world.CreateWorldScreen;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.stat.Stats;
@@ -117,6 +119,7 @@ public class SeedSession {
         cwsAccess.setField_24289(Difficulty.byOrdinal(difficultyInt));
         modAccess.getSeedTextField().setText(worldSeed);
         cwsAccess.invokeCreateLevel();
+        runSetupCommands();
 
         if (startTime == 0) {
             startTime = System.currentTimeMillis();
@@ -124,6 +127,23 @@ public class SeedSession {
         oeoe.setStartTime(startTime);
         oeoe.save();
 
+    }
+
+    private static void runSetupCommands() {
+        String[] commands = new String[]{
+                "gamerule spawnRadius 0",
+                "gamerule doPatrolSpawning false",
+                "gamerule doInsomnia false",
+                "weather clear 1000000"
+        };
+        MinecraftClient client = MinecraftClient.getInstance();
+        assert client != null;
+        assert client.getServer() != null;
+        CommandManager commandManager = client.getServer().getCommandManager();
+        ServerCommandSource serverCommandSource = client.getServer().getCommandSource();
+        for (String command : commands) {
+            commandManager.execute(serverCommandSource, command);
+        }
     }
 
     public static void createLevel(String worldSeed, Screen parent, Long startTime) {
