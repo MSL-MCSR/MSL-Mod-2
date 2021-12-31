@@ -12,7 +12,6 @@
     "game.DebugHudMixin",
     "game.EyeOfEnderEntityMixin",
     "game.IronGolemEntityMixin",
-    "game.KeyboardMixin",
     "game.LevelPropertiesMixin",
     "game.MinecraftClientMixin",
     "game.MinecraftServerMixin",

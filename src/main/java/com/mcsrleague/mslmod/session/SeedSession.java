@@ -2,6 +2,7 @@ package com.mcsrleague.mslmod.session;
 
 import com.google.gson.Gson;
 import com.mcsrleague.mslmod.MSLMod;
+import com.mcsrleague.mslmod.Timer;
 import com.mcsrleague.mslmod.WarningModsUtil;
 import com.mcsrleague.mslmod.mixin.access.CreateWorldScreenAccess;
 import com.mcsrleague.mslmod.mixin.access.MoreOptionsDialogAccess;
@@ -89,6 +90,8 @@ public class SeedSession {
     public static void playSessionLevel() {
         try {
             MinecraftClient client = MinecraftClient.getInstance();
+            Timer.update();
+            Timer.show();
             client.method_29970(new SaveLevelScreen(new TranslatableText("selectWorld.data_read")));
             client.startIntegratedServer(MSLMod.eo().getWorldName());
         } catch (Exception e) {
@@ -127,6 +130,8 @@ public class SeedSession {
         oeoe.setStartTime(startTime);
         oeoe.save();
 
+        Timer.update();
+        Timer.show();
     }
 
     private static void runSetupCommands() {
@@ -282,6 +287,7 @@ public class SeedSession {
     }
 
     public void end() {
+        Timer.hide();
         playing = false;
     }
 

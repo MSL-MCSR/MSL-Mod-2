@@ -2,6 +2,7 @@ package com.mcsrleague.mslmod;
 
 import com.mcsrleague.mslmod.session.SeedSession;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,8 @@ public class MSLMod implements ModInitializer {
 
     public static final String MOD_ID = "mcsrleague";
     public static final String MOD_NAME = "MSL Mod";
+    public static String VERSION = "";
+
     public static Logger LOGGER = LogManager.getLogger();
     private static SeedSession eoeo = SeedSession.fromFile();
     private static boolean relog;
@@ -78,6 +81,8 @@ public class MSLMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        VERSION = FabricLoader.getInstance().getModContainer("mcsrleague").get().getMetadata().getVersion().getFriendlyString();
+
         WarningModsUtil.checkWarningMods();
         mslOptions = new MSLOptions();
         log(Level.INFO, "Initializing");
@@ -89,6 +94,9 @@ public class MSLMod implements ModInitializer {
         }
         DumbUtil.checkDumbFile();
         TradesUtil.changeTrades();
+
+        Timer.hide();
+        Timer.update();
     }
 
 }

@@ -12,6 +12,8 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalLong;
 
 public class CustomSeedScreen extends Screen {
@@ -72,18 +74,32 @@ public class CustomSeedScreen extends Screen {
     protected void init() {
         worldSeedWidget = new TextFieldWidget(textRenderer, width / 2 - 85, height / 2 - 20, 170, 20, worldSeedWidget, LiteralText.EMPTY);
         dropSeedWidget = new TextFieldWidget(textRenderer, width / 2 - 85, height / 2 + 30, 170, 20, dropSeedWidget, LiteralText.EMPTY);
+        worldSeedWidget.setMaxLength(64);
+        dropSeedWidget.setMaxLength(64);
         children.add(worldSeedWidget);
         children.add(dropSeedWidget);
         this.addButton(new MSLButtonWidget(width / 2 - 85, height / 2 + 80, 80, 20, new TranslatableText("mcsrleague.seed.create"), button -> {
             if (!worldSeedWidget.getText().equals("")) {
                 if (dropSeedWidget.getText().equals("")) {
-                    dropSeedWidget.setText(worldSeedWidget.getText());
+                    String[] rawWords = worldSeedWidget.getText().replace("\n"," ").replace("\t"," ").split(" ");
+                    List<String> words = new ArrayList<>();
+                    for(String string: rawWords){
+                        if(!string.equals("")){
+                            words.add(string);
+                        }
+                    }
+                    if(words.size() > 1) {
+                        worldSeedWidget.setText(words.get(0));
+                        dropSeedWidget.setText(words.get(1));
+                    } else {
+                        worldSeedWidget.setText(words.get(0));
+                        dropSeedWidget.setText(words.get(0));
+                    }
                 } else {
                     SpeedrunRandomHelper.setOverride(stringToSeed(dropSeedWidget.getText()));
                     SeedSession.createLevel(worldSeedWidget.getText(), this, false);
                 }
             }
-
         }));
         this.addButton(new MSLButtonWidget(width / 2 + 5, height / 2 + 80, 80, 20, new TranslatableText("mcsrleague.seed.cancel"), button -> {
             onClose();

@@ -12,20 +12,42 @@ import java.util.Scanner;
 public class MSLOptions {
     private static final File file = new File("mcsrleague/options.json");
     private final MSLOptionsInfoJson mslOptionsInfo;
+    private int[] timerPos;
 
     public MSLOptions() {
         Gson gson = new Gson();
         mslOptionsInfo = gson.fromJson(readFile(), MSLOptionsInfoJson.class);
-        if (mslOptionsInfo.difficulty == null) {
-            mslOptionsInfo.difficulty = 1;
-        }
+        mslOptionsInfo.ensure();
+        timerPos = new int[2];
+        timerPos[0] = mslOptionsInfo.timerX;
+        timerPos[1] = mslOptionsInfo.timerY;
+    }
+
+    public int getDifficulty() {
+        return mslOptionsInfo.difficulty;
     }
 
     public void setDifficulty(int difficulty) {
         mslOptionsInfo.difficulty = difficulty;
     }
-    public int getDifficulty(){
-        return mslOptionsInfo.difficulty;
+
+    public boolean getTimerEnabled() {
+        return mslOptionsInfo.timerEnabled;
+    }
+
+    public void setTimerEnabled(boolean timer) {
+        mslOptionsInfo.timerEnabled = timer;
+    }
+
+    public void setTimerPos(int x, int z) {
+        mslOptionsInfo.timerX = x;
+        mslOptionsInfo.timerY = z;
+        timerPos[0] = x;
+        timerPos[1] = z;
+    }
+
+    public int[] getTimerPos(){
+        return timerPos;
     }
 
     public void save() {
@@ -33,7 +55,7 @@ public class MSLOptions {
     }
 
     private void save(boolean deleteFile) {
-        if(deleteFile){
+        if (deleteFile) {
             file.delete();
         }
         try {
@@ -43,9 +65,9 @@ public class MSLOptions {
             fileWriter.write(out);
             fileWriter.close();
         } catch (IOException e) {
-            if(!deleteFile){
+            if (!deleteFile) {
                 save(true);
-            }else {
+            } else {
                 MSLMod.log(Level.ERROR, "Could not save options.");
             }
         }

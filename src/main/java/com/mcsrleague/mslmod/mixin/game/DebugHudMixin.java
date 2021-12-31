@@ -1,5 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
+import com.mcsrleague.mslmod.MSLMod;
 import net.minecraft.client.gui.hud.DebugHud;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +13,6 @@ import java.util.List;
 public abstract class DebugHudMixin {
     @Inject(method = "getLeftText", at = @At("RETURN"), cancellable = true)
     private void addDebugLineMixin(CallbackInfoReturnable<List<String>> info) {
-        info.getReturnValue().add("MSL Mod Loaded");
+        info.getReturnValue().add("MSL Mod v" + MSLMod.VERSION + " Loaded");
     }
 }
