@@ -23,6 +23,7 @@ public class MSLMod implements ModInitializer {
     private static boolean relog;
     private static MSLOptions mslOptions;
     private static String token = null;
+    private static String completionTime = null;
     private static Timer timer;
 
     public static boolean isRelog() {
@@ -53,15 +54,18 @@ public class MSLMod implements ModInitializer {
         return eoeo != null && eoeo.isPlaying();
     }
 
-    public static void complete(String token) {
-        MSLMod.token = token;
-        try {
-            FileWriter fileWriter = new FileWriter("mcsrleague/lasttoken.txt");
-            fileWriter.write(token);
-            fileWriter.close();
-        } catch (IOException e) {
-            MSLMod.log(Level.ERROR, "Could not save token to lasttoken.txt.");
-            e.printStackTrace();
+    public static void complete(String token, String time, boolean givesToken) {
+        completionTime = time;
+        if (!WarningModsUtil.hasBypass() && givesToken) {
+            MSLMod.token = token;
+            try {
+                FileWriter fileWriter = new FileWriter("mcsrleague/lasttoken.txt");
+                fileWriter.write(token);
+                fileWriter.close();
+            } catch (IOException e) {
+                MSLMod.log(Level.ERROR, "Could not save token to lasttoken.txt.");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -69,10 +73,12 @@ public class MSLMod implements ModInitializer {
         return eoeo != null && token != null;
     }
 
-    public static String takeToken() {
+    public static String[] takeTokenAndTime() {
         String token = MSLMod.token;
         MSLMod.token = null;
-        return token;
+        String completionTime = MSLMod.completionTime;
+        MSLMod.completionTime = null;
+        return new String[]{token, completionTime};
     }
 
     public static void log(Level level, String message) {

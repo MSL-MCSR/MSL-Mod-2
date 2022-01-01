@@ -2,8 +2,9 @@
   "mcsrleague.completion.title": "MSL Race Completed",
   "mcsrleague.completion.token": "Copy Token",
   "mcsrleague.completion.done": "Done",
-  "mcsrleague.completion.tokeninfo": "Seed completed! Please submit your token!",
+  "mcsrleague.completion.tokeninfo": "Please submit your token!",
   "mcsrleague.completion.copywarning": "You must copy your token first!",
+  "mcsrleague.completion.time": "Seed finished with a time of",
 
   "mcsrleague.continue.title": "Continue Playing?",
   "mcsrleague.continue.continue": "Continue",
@@ -33,6 +34,7 @@
   "mcsrleague.credits.streamer": "Streamer and Community Organizer",
   "mcsrleague.credits.testers": "Mod Testers",
   "mcsrleague.credits.done": "Done",
+  "mcsrleague.credits.timer": "Timer inspired by RedLime",
 
   "mcsrleague.options.title": "MSL Options & Extras",
   "mcsrleague.options.done": "Done",

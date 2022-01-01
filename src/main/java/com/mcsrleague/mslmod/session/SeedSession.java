@@ -25,6 +25,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class SeedSession {
@@ -154,8 +155,23 @@ public class SeedSession {
         createLevel(worldSeed, parent, startTime, true);
     }
 
+    private static String getTimeString(long startTime, long endTime) {
+        long time = endTime - startTime;
+        DecimalFormat decimalFormat = new DecimalFormat("0.000");
+        if (time >= 6000) {
+            return "99:" + decimalFormat.format(99.999);
+        }
+        int minutes = (int) time / 60;
+        float seconds = time - 60 * minutes;
+        return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + decimalFormat.format(seconds);
+    }
+
     public void setGivesToken(boolean givesToken) {
         this.givesToken = givesToken;
+    }
+
+    public boolean getGivesToken() {
+        return givesToken;
     }
 
     public void pause() {
@@ -194,16 +210,16 @@ public class SeedSession {
         }
     }
 
-
     public void checkDatapacks(MinecraftServer server) {
         if (server.getDataPackManager().getProfiles().size() > 1) {
             mark(2);
         }
     }
 
-    public String generateToken(ServerPlayerEntity player) {
+    public String[] generateTokenAndTime(ServerPlayerEntity player) {
+        String token;
+        long time = System.currentTimeMillis();
         try {
-            long time = System.currentTimeMillis();
             checkDatapacks(Objects.requireNonNull(player.getServer()));
             ServerWorld ee = Objects.requireNonNull(player.getServer()).getWorld(World.OVERWORLD);
             String aa = Long.toHexString(time - (time % 51) + getTimeAdd());
@@ -211,12 +227,12 @@ public class SeedSession {
             String cc = Long.toHexString(ee.getSeed());
             String bb = player.getUuidAsString().replace("-", "");
             String dd = Integer.toHexString(player.getStatHandler().getStat(Stats.CUSTOM.getOrCreateStat(Stats.PLAY_ONE_MINUTE)));
-
-            return aa + "g" + bb + "g" + cc + "g" + dd + "g" + Long.toHexString(startTime);
+            token = aa + "g" + bb + "g" + cc + "g" + dd + "g" + Long.toHexString(startTime);
         } catch (Exception exception) {
             exception.printStackTrace();
-            return "bad";
+            token = "bad";
         }
+        return new String[]{token, getTimeString(startTime, time)};
     }
 
     private int getTimeAdd() {
@@ -291,12 +307,10 @@ public class SeedSession {
     }
 
     public void complete(ServerPlayerEntity player) {
-        String token = generateToken(player);
+        String[] tokenAndTime = generateTokenAndTime(player);
         end();
         save();
-        if (givesToken && !WarningModsUtil.hasBypass()) {
-            MSLMod.complete(token);
-        }
+            MSLMod.complete(tokenAndTime[0],tokenAndTime[1], givesToken);
     }
 
 

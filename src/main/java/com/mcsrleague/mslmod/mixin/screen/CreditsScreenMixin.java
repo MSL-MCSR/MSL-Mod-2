@@ -1,7 +1,6 @@
 package com.mcsrleague.mslmod.mixin.screen;
 
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.WarningModsUtil;
 import com.mcsrleague.mslmod.screen.CompletionScreen;
 import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -20,8 +19,9 @@ public abstract class CreditsScreenMixin extends Screen {
     @Inject(method = "init", at = @At("TAIL"))
     private void initMixin(CallbackInfo info) {
         assert client != null;
-        if (MSLMod.isCompleted() && !WarningModsUtil.hasBypass()) {
-            client.openScreen(new CompletionScreen(MSLMod.takeToken(), this));
+        if (MSLMod.isCompleted()) {
+            String[] tokenAndTime = MSLMod.takeTokenAndTime();
+            client.openScreen(new CompletionScreen(tokenAndTime[0], tokenAndTime[1], this));
         }
     }
 }

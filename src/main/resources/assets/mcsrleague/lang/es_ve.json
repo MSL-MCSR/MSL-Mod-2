@@ -2,7 +2,7 @@
   "mcsrleague.completion.title": "Intento oficial completado",
   "mcsrleague.completion.token": "Copiar token",
   "mcsrleague.completion.done": "Listo",
-  "mcsrleague.completion.tokeninfo": "Semilla completada! Por favor, envia tu token!",
+  "mcsrleague.completion.tokeninfo": "Por favor, envia tu token!",
   "mcsrleague.completion.copywarning": "Primero debes copiar tu token!",
 
   "mcsrleague.continue.title": "Seguir Jugando?",
@@ -33,6 +33,7 @@
   "mcsrleague.credits.streamer": "Streamer y Organizador de la Comunidad",
   "mcsrleague.credits.testers": "Mod Testers",
   "mcsrleague.credits.done": "Listo",
+  "mcsrleague.credits.timer": "Inspirado en el timer de RedLime",
 
   "mcsrleague.options.title": "Opciones y Extras de la MSL",
   "mcsrleague.options.done": "Listo",

@@ -34,6 +34,8 @@ public class MSLCreditsScreen extends Screen {
         texts.add(new TranslatableText("mcsrleague.credits.testers").formatted(Formatting.UNDERLINE).formatted(Formatting.BOLD));
         texts.add(new LiteralText("Ybot, sl1dr, AutomattPL, CroPro, MinecrAvenger,"));
         texts.add(new LiteralText("Falacias, PrinceofSha, and SunOmega"));
+        texts.add(LiteralText.EMPTY);
+        texts.add(new TranslatableText("mcsrleague.credits.timer"));
         return texts;
     }
 
