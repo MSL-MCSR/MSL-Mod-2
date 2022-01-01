@@ -45,6 +45,20 @@
   "mcsrleague.options.customseed": "Play Custom Seed",
   "mcsrleague.options.credits": "View Credits",
 
+  "mcsrleague.options.raceoptions": "MSL Race Options",
+  "mcsrleague.options.extras": "Extras",
+  "mcsrleague.options.timeroptions": "Timer Options...",
+
+  "mcsrleague.timer.title": "Timer Options",
+  "mcsrleague.timer.save": "Save",
+  "mcsrleague.timer.cancel": "Cancel",
+  "mcsrleague.timer.enabled": "Enabled",
+  "mcsrleague.timer.shadow": "Shadow",
+  "mcsrleague.timer.on": "On",
+  "mcsrleague.timer.off": "Off",
+  "mcsrleague.timer.move1": "Double click to move the timer to the mouse.",
+  "mcsrleague.timer.move2": "Use the arrow keys to move the timer pixel by pixel.",
+
   "mcsrleague.web.title": "Open Webpage",
   "mcsrleague.web.home": "Home",
   "mcsrleague.web.faq": "FAQ/Rules",

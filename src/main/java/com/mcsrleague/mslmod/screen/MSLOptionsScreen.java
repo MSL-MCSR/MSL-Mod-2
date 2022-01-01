@@ -3,13 +3,12 @@ package com.mcsrleague.mslmod.screen;
 import com.mcsrleague.mslmod.MSLMod;
 import com.mcsrleague.mslmod.MSLOptions;
 import com.mcsrleague.mslmod.infograbber.HttpsInfoGrabber;
-import com.mcsrleague.mslmod.infograbber.TestSeedInfoGrabber;
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
-import com.mcsrleague.mslmod.widget.PickableMSLButtonWidget;
-import com.mcsrleague.mslmod.widget.PickableWidget;
-import com.mcsrleague.mslmod.widget.PickableWidgetSet;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.AbstractButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
@@ -17,34 +16,53 @@ import net.minecraft.util.Identifier;
 public class MSLOptionsScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
     private final MSLOptions mslOptions;
-    private PickableWidgetSet difficultyWidgetSet;
-    private TranslatableText difficultyText;
-    private TranslatableText otherText;
+    private TranslatableText raceOptionsText;
+    private TranslatableText extrasText;
+    private int difficulty;
 
     public MSLOptionsScreen() {
         super(new TranslatableText("mcsrleague.options.title"));
         mslOptions = MSLMod.getOptions();
     }
 
+    private void updateDifficultyButton(AbstractButtonWidget button) {
+        Text difficultyText = new LiteralText("None");
+        switch (difficulty) {
+            case 1:
+                difficultyText = new TranslatableText("mcsrleague.options.easy");
+                break;
+            case 2:
+                difficultyText = new TranslatableText("mcsrleague.options.normal");
+                break;
+            case 3:
+                difficultyText = new TranslatableText("mcsrleague.options.hard");
+                break;
+        }
+        button.setMessage(new TranslatableText("mcsrleague.options.difficulty").append(": ").append(difficultyText));
+    }
+
     @Override
     protected void init() {
         assert client != null;
-        difficultyWidgetSet = new PickableWidgetSet();
 
-        difficultyWidgetSet.add(addButton(new PickableMSLButtonWidget(width / 2 - 124, height / 2 - 10, 80, 20, new TranslatableText("mcsrleague.options.easy"), button -> {
-            difficultyWidgetSet.pick((PickableWidget) button);
-        })));
-        difficultyWidgetSet.add(addButton(new PickableMSLButtonWidget(width / 2 - 40, height / 2 - 10, 80, 20, new TranslatableText("mcsrleague.options.normal"), button -> {
-            difficultyWidgetSet.pick((PickableWidget) button);
-        })));
-        difficultyWidgetSet.add(addButton(new PickableMSLButtonWidget(width / 2 + 44, height / 2 - 10, 80, 20, new TranslatableText("mcsrleague.options.hard"), button -> {
-            difficultyWidgetSet.pick((PickableWidget) button);
-        })));
+        AbstractButtonWidget difficultyButton = addButton(new MSLButtonWidget(width / 2 - 154, height / 2 - 10, 152, 20, new LiteralText(""), button -> {
+            difficulty += 1;
+            if (difficulty > 3) {
+                difficulty = 1;
+            }
+            updateDifficultyButton(button);
+        }));
+        difficulty = mslOptions.getDifficulty();
+        updateDifficultyButton(difficultyButton);
 
-        difficultyWidgetSet.pick(mslOptions.getDifficulty() - 1);
+        addButton(new MSLButtonWidget(width / 2 + 2, height / 2 - 10, 152, 20, new TranslatableText("mcsrleague.options.timeroptions"), button -> {
+            onClose();
+            this.client.openScreen(new TimerOptionsScreen());
+        }));
+
 
         addButton(new MSLButtonWidget(width / 2 - 154, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.testrace"), button -> {
-            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/testseed"),false));
+            client.openScreen(new PlayMSLScreen(new HttpsInfoGrabber("https://mcsrleague.com/api/testseed"), false));
         }));
         addButton(new MSLButtonWidget(width / 2 - 50, height / 2 + 40, 100, 20, new TranslatableText("mcsrleague.options.customseed"), button -> {
             client.openScreen(new CustomSeedScreen(this));
@@ -57,8 +75,8 @@ public class MSLOptionsScreen extends Screen {
             onClose();
         }));
 
-        difficultyText = new TranslatableText("mcsrleague.options.difficulty");
-        otherText = new TranslatableText("mcsrleague.options.other");
+        raceOptionsText = new TranslatableText("mcsrleague.options.raceoptions");
+        extrasText = new TranslatableText("mcsrleague.options.extras");
 
     }
 
@@ -70,15 +88,15 @@ public class MSLOptionsScreen extends Screen {
         client.getTextureManager().bindTexture(MSL_LOGO);
         drawTexture(matrices, width / 2 - 64, height / 2 - 112, 0.0F, 0.0F, 128, 64, 128, 64);
         drawCenteredText(matrices, textRenderer, ((TranslatableText) title).formatted(Formatting.BOLD), width / 2, height / 2 - 50, 16777215);
-        drawCenteredText(matrices, textRenderer, difficultyText.formatted(Formatting.UNDERLINE), width / 2, height / 2 - 25, 16777215);
-        drawCenteredText(matrices, textRenderer, otherText.formatted(Formatting.UNDERLINE), width / 2, height / 2 + 25, 16777215);
+        drawCenteredText(matrices, textRenderer, raceOptionsText.formatted(Formatting.UNDERLINE), width / 2, height / 2 - 25, 16777215);
+        drawCenteredText(matrices, textRenderer, extrasText.formatted(Formatting.UNDERLINE), width / 2, height / 2 + 25, 16777215);
         super.render(matrices, mouseX, mouseY, delta);
     }
 
     @Override
     public void onClose() {
         super.onClose();
-        mslOptions.setDifficulty(difficultyWidgetSet.getPicked() + 1);
+        mslOptions.setDifficulty(difficulty);
         mslOptions.save();
     }
 }

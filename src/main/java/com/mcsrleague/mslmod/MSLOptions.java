@@ -12,13 +12,19 @@ import java.util.Scanner;
 public class MSLOptions {
     private static final File file = new File("mcsrleague/options.json");
     private final MSLOptionsInfoJson mslOptionsInfo;
-    private int[] timerPos;
+    private final double[] timerPos;
 
     public MSLOptions() {
+        MSLOptionsInfoJson newMslOptionsInfo;
         Gson gson = new Gson();
-        mslOptionsInfo = gson.fromJson(readFile(), MSLOptionsInfoJson.class);
+        try {
+            newMslOptionsInfo = gson.fromJson(readFile(), MSLOptionsInfoJson.class);
+        } catch (Exception e) {
+            newMslOptionsInfo = new MSLOptionsInfoJson();
+        }
+        mslOptionsInfo = newMslOptionsInfo;
         mslOptionsInfo.ensure();
-        timerPos = new int[2];
+        timerPos = new double[2];
         timerPos[0] = mslOptionsInfo.timerX;
         timerPos[1] = mslOptionsInfo.timerY;
     }
@@ -39,14 +45,22 @@ public class MSLOptions {
         mslOptionsInfo.timerEnabled = timer;
     }
 
-    public void setTimerPos(int x, int z) {
+    public boolean getTimerShadow() {
+        return mslOptionsInfo.timerShadow;
+    }
+
+    public void setTimerShadow(boolean shadow) {
+        mslOptionsInfo.timerShadow = shadow;
+    }
+
+    public void setTimerPos(double x, double z) {
         mslOptionsInfo.timerX = x;
         mslOptionsInfo.timerY = z;
         timerPos[0] = x;
         timerPos[1] = z;
     }
 
-    public int[] getTimerPos(){
+    public double[] getTimerPos() {
         return timerPos;
     }
 
@@ -80,7 +94,7 @@ public class MSLOptions {
             scanner.close();
             return out;
         } catch (FileNotFoundException e) {
-            return "{difficulty:1}";
+            return "{}";
         }
     }
 

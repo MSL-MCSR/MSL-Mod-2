@@ -11,19 +11,22 @@ public class Timer {
     private static long startTime;
     private static boolean enabled = false;
     private static boolean shown = false;
-    private static int x;
-    private static int y;
+    private static boolean shadow = true;
+    private static double x;
+    private static double y;
     private static MinecraftClient client;
 
     public static void update() {
         client = MinecraftClient.getInstance();
+        MSLOptions options = MSLMod.getOptions();
         if (MSLMod.ooml()) {
             startTime = MSLMod.eo().getStartTime();
         } else {
             startTime = System.currentTimeMillis();
         }
-        enabled = MSLMod.getOptions().getTimerEnabled();
-        int[] pos = MSLMod.getOptions().getTimerPos();
+        enabled = options.getTimerEnabled();
+        shadow = options.getTimerShadow();
+        double[] pos = options.getTimerPos();
         x = pos[0];
         y = pos[1];
     }
@@ -43,12 +46,20 @@ public class Timer {
         }
         int minutes = (int) time / 60;
         float seconds = time - 60 * minutes;
-        return (minutes < 9 ? "0" : "") + minutes + ":" + (seconds < 9 ? "0" : "") + decimalFormat.format(seconds);
+        return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + decimalFormat.format(seconds);
     }
 
-    public static void render(MatrixStack matrices, TextRenderer textRenderer) {
-        if (enabled && shown && MSLMod.ooml() && !client.options.debugEnabled) {
-            textRenderer.draw(matrices, getTimeString(), x, y, 16777215);
+    public static void render(MatrixStack matrices, TextRenderer textRenderer, int width, int height) {
+        if (enabled && shown && MSLMod.ooml() && !client.options.debugEnabled && textRenderer != null) {
+            matrices.translate(0, 0, 999.9);
+            String tString = getTimeString();
+            int tWidth = textRenderer.getWidth(tString);
+            if (shadow) {
+                textRenderer.drawWithShadow(matrices, tString, (int) (width * x) - (x >= 0.5 ? tWidth : 0), (int) (height * y), 16777215);
+            } else {
+                textRenderer.draw(matrices, tString, (int) (width * x) - (x >= 0.5 ? tWidth : 0), (int) (height * y), 16777215);
+            }
+            matrices.pop();
         }
     }
 }
