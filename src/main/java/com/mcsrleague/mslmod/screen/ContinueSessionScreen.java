@@ -1,7 +1,6 @@
 package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.Timer;
 import com.mcsrleague.mslmod.session.SeedSession;
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
@@ -21,8 +20,8 @@ public class ContinueSessionScreen extends Screen {
 
     @Override
     protected void init() {
-        Timer.update();
-        Timer.show();
+        MSLMod.getTimer().update();
+        MSLMod.getTimer().show();
         addButton(new MSLButtonWidget(this.width / 2 - 100, this.height / 4 + 72, 200, 20, new TranslatableText("mcsrleague.continue.continue"), button -> SeedSession.playSessionLevel()));
         addButton(new MSLButtonWidget(this.width / 2 - 100, this.height / 4 + 96, 200, 20, new TranslatableText("mcsrleague.continue.quit"), button -> {
             if (!pressedQuit) {

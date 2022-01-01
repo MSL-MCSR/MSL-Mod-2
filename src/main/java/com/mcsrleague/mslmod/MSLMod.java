@@ -23,6 +23,7 @@ public class MSLMod implements ModInitializer {
     private static boolean relog;
     private static MSLOptions mslOptions;
     private static String token = null;
+    private static Timer timer;
 
     public static boolean isRelog() {
         if (relog) {
@@ -30,6 +31,10 @@ public class MSLMod implements ModInitializer {
             return true;
         }
         return false;
+    }
+
+    public static Timer getTimer() {
+        return timer;
     }
 
     public static void doRelog() {
@@ -95,8 +100,10 @@ public class MSLMod implements ModInitializer {
         DumbUtil.checkDumbFile();
         TradesUtil.changeTrades();
 
-        Timer.hide();
-        Timer.update();
+        timer = new Timer();
+
+        timer.hide();
+        timer.update();
     }
 
 }

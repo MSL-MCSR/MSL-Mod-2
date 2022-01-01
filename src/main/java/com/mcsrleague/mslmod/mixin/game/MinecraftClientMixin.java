@@ -1,7 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.Timer;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.screen.GameMenuScreen;
@@ -41,6 +40,6 @@ public abstract class MinecraftClientMixin {
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/toast/ToastManager;draw(Lnet/minecraft/client/util/math/MatrixStack;)V", shift = At.Shift.AFTER))
     private void renderOnTopMixin(boolean tick, CallbackInfo info) {
         this.profiler.swap("timer");
-        Timer.render(new MatrixStack(), textRenderer, window.getScaledWidth(), window.getScaledHeight());
+        MSLMod.getTimer().render(new MatrixStack(), textRenderer, window.getScaledWidth(), window.getScaledHeight());
     }
 }
