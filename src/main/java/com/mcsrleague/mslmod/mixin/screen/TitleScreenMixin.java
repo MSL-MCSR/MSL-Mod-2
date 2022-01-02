@@ -70,7 +70,7 @@ public abstract class TitleScreenMixin extends Screen {
             if (WarningModsUtil.hasBypass()) {
                 playMSLButton.active = false;
             } else {
-                client.openScreen(new WarningScreen());
+                client.openScreen(new ModsWarningScreen());
             }
         }
         if (MSLMod.ooml() && ((!WarningModsUtil.hasWarningMods()) || WarningModsUtil.hasBypass())) {

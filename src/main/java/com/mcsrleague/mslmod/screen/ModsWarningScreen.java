@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WarningScreen extends Screen {
+public class ModsWarningScreen extends Screen {
     private static final Identifier MSL_LOGO = new Identifier("mcsrleague:textures/gui/msl_logo.png");
 
     private final List<Text> textList;
@@ -21,7 +21,7 @@ public class WarningScreen extends Screen {
     private AbstractButtonWidget quitButton;
     private Text incompatibleText;
 
-    public WarningScreen() {
+    public ModsWarningScreen() {
         super(new LiteralText("Warning Screen"));
         textList = new ArrayList<>();
         for (String mod : WarningModsUtil.getFoundWarningMods()) {

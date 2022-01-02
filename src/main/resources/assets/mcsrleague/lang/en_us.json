@@ -83,5 +83,7 @@
   "mcsrleague.game.noseed": "You cannot use /seed on MSL Race worlds!",
   "mcsrleague.game.exit": "Exit Options...",
 
-  "mcsrleague.warning.incompatible": "Incompatible mods found, please remove the following mods"
+  "mcsrleague.warning.incompatible": "Incompatible mods found, please remove the following mods",
+  "mcsrleague.warning.raceworld": "MSL Race worlds started within the last 30 minutes cannot be edited or re-created.",
+  "mcsrleague.warning.ok": "OK"
 }
