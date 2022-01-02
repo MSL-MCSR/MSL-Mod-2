@@ -67,10 +67,11 @@ public class MSLMod implements ModInitializer {
                 e.printStackTrace();
             }
         }
+        System.out.println("reached - "+MSLMod.completionTime+" - "+(MSLMod.token == null ? "null" : MSLMod.token));
     }
 
     public static boolean isCompleted() {
-        return eoeo != null && token != null;
+        return eoeo != null && completionTime != null;
     }
 
     public static String[] takeTokenAndTime() {

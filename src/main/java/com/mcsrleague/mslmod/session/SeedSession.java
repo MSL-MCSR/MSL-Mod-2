@@ -2,7 +2,6 @@ package com.mcsrleague.mslmod.session;
 
 import com.google.gson.Gson;
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.WarningModsUtil;
 import com.mcsrleague.mslmod.mixin.access.CreateWorldScreenAccess;
 import com.mcsrleague.mslmod.mixin.access.MoreOptionsDialogAccess;
 import net.fabricmc.loader.api.FabricLoader;
@@ -156,22 +155,18 @@ public class SeedSession {
     }
 
     private static String getTimeString(long startTime, long endTime) {
-        long time = endTime - startTime;
+        double time = (endTime - startTime)/1000.0d;
         DecimalFormat decimalFormat = new DecimalFormat("0.000");
         if (time >= 6000) {
             return "99:" + decimalFormat.format(99.999);
         }
         int minutes = (int) time / 60;
-        float seconds = time - 60 * minutes;
+        double seconds = time - 60 * minutes;
         return (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + decimalFormat.format(seconds);
     }
 
     public void setGivesToken(boolean givesToken) {
         this.givesToken = givesToken;
-    }
-
-    public boolean getGivesToken() {
-        return givesToken;
     }
 
     public void pause() {
@@ -310,7 +305,7 @@ public class SeedSession {
         String[] tokenAndTime = generateTokenAndTime(player);
         end();
         save();
-            MSLMod.complete(tokenAndTime[0],tokenAndTime[1], givesToken);
+        MSLMod.complete(tokenAndTime[0], tokenAndTime[1], givesToken);
     }
 
 

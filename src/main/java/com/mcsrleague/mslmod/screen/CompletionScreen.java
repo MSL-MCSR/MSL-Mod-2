@@ -41,7 +41,7 @@ public class CompletionScreen extends Screen {
         assert client != null;
         this.warningTextWidth = textRenderer.getWidth(this.warningText);
 
-        if(hasToken) {
+        if (hasToken) {
             addButton(new MSLButtonWidget(width / 2 - 50, height / 2 + 15, 100, 20, new TranslatableText("mcsrleague.completion.token"), button -> {
                 client.keyboard.setClipboard(token);
                 this.copied = true;
