@@ -10,6 +10,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(MinecraftClient.class)
 public interface MinecraftClientAccess {
     @Invoker("render")
-    public void invokeRender(boolean bl);
+    void invokeRender(boolean bl);
 
 }

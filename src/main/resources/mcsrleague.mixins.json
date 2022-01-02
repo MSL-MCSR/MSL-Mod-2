@@ -3,6 +3,7 @@
   "package": "com.mcsrleague.mslmod.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "access.ButtonWidgetAccess",
     "access.CreateWorldScreenAccess",
     "access.MinecraftClientAccess",
     "access.MoreOptionsDialogAccess",
@@ -32,6 +33,7 @@
     "screen.DumbGameMenuScreenMixin",
     "screen.GameMenuScreenMixin",
     "screen.OptionsScreenMixin",
+    "screen.SelectWorldScreenMixin",
     "screen.TitleScreenMixin"
   ],
   "client": [],
