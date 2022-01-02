@@ -1,7 +1,7 @@
 package com.mcsrleague.mslmod.screen;
 
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import com.mcsrleague.mslmod.session.SeedSession;
 import com.mcsrleague.mslmod.widget.SquishButtonWidget;
 import net.minecraft.client.gui.screen.SaveLevelScreen;
@@ -45,7 +45,7 @@ public class ExitOptionsScreen extends Screen {
             String seed = String.valueOf(Objects.requireNonNull(Objects.requireNonNull(client.getServer()).getWorld(World.OVERWORLD)).getSeed());
             long start = MSLMod.eo().getStartTime();
             exitWorld(button);
-            SpeedrunRandomHelper.setOverride(SpeedrunRandomHelper.getCurrentSeed());
+            SpeedrunRandomUtil.setOverride(SpeedrunRandomUtil.getCurrentSeed());
             SeedSession.createLevel(seed, null, start);
         }));
         forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 56, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {

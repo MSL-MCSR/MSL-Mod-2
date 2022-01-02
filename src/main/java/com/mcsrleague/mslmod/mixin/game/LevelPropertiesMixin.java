@@ -1,7 +1,7 @@
 package com.mcsrleague.mslmod.mixin.game;
 
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
-import com.mcsrleague.mslmod.session.SessionWorld;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
+import com.mcsrleague.mslmod.session.SessionWorldUtil;
 import com.mojang.datafixers.DataFixer;
 import com.mojang.serialization.Dynamic;
 import com.mojang.serialization.Lifecycle;
@@ -27,17 +27,17 @@ public abstract class LevelPropertiesMixin {
         int eye = dynamic.get("EyeCount").asInt(0);
         int dragonCounter = dynamic.get("DragonPerch").asInt(0);
         long seed = dynamic.get("DropSeed").asLong(dynamic.get("WorldGenSettings").get("seed").asLong(0L));
-        SpeedrunRandomHelper.setCounts(seed, barter, blaze, eye, dragonCounter, true);
-        SessionWorld.setSessionWorld(dynamic.get("SessionWorld").asBoolean(false));
+        SpeedrunRandomUtil.setCounts(seed, barter, blaze, eye, dragonCounter, true);
+        SessionWorldUtil.setSessionStart(dynamic.get("SessionStart").asLong(0L));
     }
 
     @Inject(method = "updateProperties", at = @At("TAIL"))
     private void addLevelDat(RegistryTracker registryTracker, CompoundTag compoundTag, CompoundTag compoundTag2, CallbackInfo ci) {
-        compoundTag.putInt("BlazeCount", SpeedrunRandomHelper.blazeRandom.getCount());
-        compoundTag.putInt("BarterCount", SpeedrunRandomHelper.piglinRandom.getCount());
-        compoundTag.putInt("EyeCount", SpeedrunRandomHelper.eyeRandom.getCount());
-        compoundTag.putInt("DragonPerch", SpeedrunRandomHelper.dragonCounter);
-        compoundTag.putBoolean("SessionWorld", SessionWorld.isSessionWorld());
-        compoundTag.putLong("DropSeed", SpeedrunRandomHelper.getCurrentSeed());
+        compoundTag.putInt("BlazeCount", SpeedrunRandomUtil.blazeRandom.getCount());
+        compoundTag.putInt("BarterCount", SpeedrunRandomUtil.piglinRandom.getCount());
+        compoundTag.putInt("EyeCount", SpeedrunRandomUtil.eyeRandom.getCount());
+        compoundTag.putInt("DragonPerch", SpeedrunRandomUtil.dragonCounter);
+        compoundTag.putLong("SessionStart", SessionWorldUtil.getSessionStart());
+        compoundTag.putLong("DropSeed", SpeedrunRandomUtil.getCurrentSeed());
     }
 }

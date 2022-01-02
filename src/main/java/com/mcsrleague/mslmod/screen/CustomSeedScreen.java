@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.screen;
 
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import com.mcsrleague.mslmod.session.SeedSession;
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
@@ -96,7 +96,7 @@ public class CustomSeedScreen extends Screen {
                         dropSeedWidget.setText(words.get(0));
                     }
                 } else {
-                    SpeedrunRandomHelper.setOverride(stringToSeed(dropSeedWidget.getText()));
+                    SpeedrunRandomUtil.setOverride(stringToSeed(dropSeedWidget.getText()));
                     SeedSession.createLevel(worldSeedWidget.getText(), this, false);
                 }
             }

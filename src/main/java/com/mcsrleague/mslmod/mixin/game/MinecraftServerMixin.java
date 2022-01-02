@@ -1,8 +1,8 @@
 package com.mcsrleague.mslmod.mixin.game;
 
 import com.mcsrleague.mslmod.MSLMod;
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
-import com.mcsrleague.mslmod.session.SessionWorld;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
+import com.mcsrleague.mslmod.session.SessionWorldUtil;
 import net.minecraft.entity.boss.dragon.phase.PhaseManager;
 import net.minecraft.entity.boss.dragon.phase.PhaseType;
 import net.minecraft.server.MinecraftServer;
@@ -54,10 +54,14 @@ public abstract class MinecraftServerMixin {
 
     @Inject(method = "initScoreboard", at = @At("TAIL"))
     private void initMixin(PersistentStateManager persistentStateManager, CallbackInfo info) {
-        if (!SpeedrunRandomHelper.hasBeenRead()) {
-            SessionWorld.setSessionWorld(MSLMod.ooml());
+        if (!SpeedrunRandomUtil.hasBeenRead()) {
+            if (MSLMod.ooml()) {
+                SessionWorldUtil.setSessionStart();
+            } else {
+                SessionWorldUtil.setSessionStart(0);
+            }
         }
-        SpeedrunRandomHelper.setCounts(SpeedrunRandomHelper.overrideOrDefault(getSaveProperties().getGeneratorOptions().getSeed()), 0, 0, 0, 0, false);
+        SpeedrunRandomUtil.setCounts(SpeedrunRandomUtil.overrideOrDefault(getSaveProperties().getGeneratorOptions().getSeed()), 0, 0, 0, 0, false);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -72,10 +76,10 @@ public abstract class MinecraftServerMixin {
             PhaseManager phaseManager = worlds.get(World.END).getAliveEnderDragons().get(0).getPhaseManager();
 
             if (!perchPhases.contains(phaseManager.getCurrent().getType())) {
-                SpeedrunRandomHelper.dragonCounter++;
+                SpeedrunRandomUtil.dragonCounter++;
             }
-            if (SpeedrunRandomHelper.dragonCounter >= 3600) {
-                SpeedrunRandomHelper.dragonCounter = 0;
+            if (SpeedrunRandomUtil.dragonCounter >= 3600) {
+                SpeedrunRandomUtil.dragonCounter = 0;
                 phaseManager.setPhase(PhaseType.LANDING_APPROACH);
             }
         }

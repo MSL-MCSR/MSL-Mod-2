@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import net.minecraft.entity.EyeOfEnderEntity;
 import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,6 +16,6 @@ public abstract class EyeOfEnderEntityMixin {
 
     @Inject(method = "moveTowards", at = @At("TAIL"))
     private void eyeBreakOverrideMixin(BlockPos pos, CallbackInfo info) {
-        dropsItem = SpeedrunRandomHelper.eyeRandom.nextInt(5) > 0;
+        dropsItem = SpeedrunRandomUtil.eyeRandom.nextInt(5) > 0;
     }
 }

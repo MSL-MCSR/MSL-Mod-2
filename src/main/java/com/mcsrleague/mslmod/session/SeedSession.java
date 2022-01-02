@@ -129,6 +129,7 @@ public class SeedSession {
         oeoe.setStartTime(startTime);
         oeoe.save();
 
+        SessionWorldUtil.setSessionStart();
         MSLMod.getTimer().update();
         MSLMod.getTimer().show();
     }

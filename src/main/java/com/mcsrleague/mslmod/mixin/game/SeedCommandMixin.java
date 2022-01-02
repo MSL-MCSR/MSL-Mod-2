@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
-import com.mcsrleague.mslmod.session.SessionWorld;
+import com.mcsrleague.mslmod.session.SessionWorldUtil;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.SeedCommand;
@@ -25,7 +25,7 @@ public abstract class SeedCommandMixin {
             Text text = Texts.bracketed((new LiteralText(String.valueOf(l))).styled((style) -> {
                 return style.withColor(Formatting.GREEN).withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, String.valueOf(l))).setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableText("chat.copy.click"))).withInsertion(String.valueOf(l));
             }));
-            if (SessionWorld.isSessionWorld()) {
+            if (SessionWorldUtil.isSessionWorld()) {
                 commandContext.getSource().sendFeedback(new TranslatableText("mcsrleague.game.noseed").formatted(Formatting.RED), false);
                 return 0;
             } else {

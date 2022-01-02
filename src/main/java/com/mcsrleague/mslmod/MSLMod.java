@@ -58,6 +58,7 @@ public class MSLMod implements ModInitializer {
         completionTime = time;
         if (!WarningModsUtil.hasBypass() && givesToken) {
             MSLMod.token = token;
+            log(Level.INFO, "Token: " + token);
             try {
                 FileWriter fileWriter = new FileWriter("mcsrleague/lasttoken.txt");
                 fileWriter.write(token);
@@ -67,7 +68,6 @@ public class MSLMod implements ModInitializer {
                 e.printStackTrace();
             }
         }
-        System.out.println("reached - "+MSLMod.completionTime+" - "+(MSLMod.token == null ? "null" : MSLMod.token));
     }
 
     public static boolean isCompleted() {

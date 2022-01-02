@@ -3,7 +3,7 @@ package com.mcsrleague.mslmod.screen;
 import com.mcsrleague.mslmod.infograbber.GrabbedInfoJson;
 import com.mcsrleague.mslmod.infograbber.InfoGrabber;
 import com.mcsrleague.mslmod.mixin.access.MinecraftClientAccess;
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import com.mcsrleague.mslmod.session.SeedSession;
 import com.mcsrleague.mslmod.widget.MSLButtonWidget;
 import net.minecraft.client.gui.screen.Screen;
@@ -322,7 +322,7 @@ public class PlayMSLScreen extends Screen {
     private void waitForStartStage() {
         if (System.currentTimeMillis() > seedStart) {
             if (hasDropSeed) {
-                SpeedrunRandomHelper.setOverride(stringToSeed(dropSeed));
+                SpeedrunRandomUtil.setOverride(stringToSeed(dropSeed));
             }
             SeedSession.createLevel(worldSeed, this, givesToken);
         }

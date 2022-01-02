@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.random;
 
-public class SpeedrunRandomHelper {
+public abstract class SpeedrunRandomUtil {
 
     public static final CountedRandom eyeRandom = new CountedRandom();
     public static final CountedRandom blazeRandom = new CountedRandom();
@@ -39,7 +39,7 @@ public class SpeedrunRandomHelper {
             return;
         }
 
-        SpeedrunRandomHelper.dragonCounter = dragonCounter;
+        SpeedrunRandomUtil.dragonCounter = dragonCounter;
 
         eyeRandom.setSeed(seed, eye);
         blazeRandom.setSeed(seed, blaze);

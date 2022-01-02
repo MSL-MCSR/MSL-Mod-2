@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.BlazeEntity;
@@ -22,7 +22,7 @@ public abstract class BlazeEntityMixin extends HostileEntity {
     protected void dropLoot(DamageSource source, boolean causedByPlayer) {
         Identifier identifier = this.getLootTable();
         LootTable lootTable = this.world.getServer().getLootManager().getTable(identifier);
-        LootContext.Builder builder = this.getLootContextBuilder(causedByPlayer, source).random(SpeedrunRandomHelper.blazeRandom);
+        LootContext.Builder builder = this.getLootContextBuilder(causedByPlayer, source).random(SpeedrunRandomUtil.blazeRandom);
         lootTable.generateLoot(builder.build(LootContextTypes.ENTITY), this::dropStack);
     }
 }

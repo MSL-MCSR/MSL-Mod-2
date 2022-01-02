@@ -1,6 +1,6 @@
 package com.mcsrleague.mslmod.mixin.game;
 
-import com.mcsrleague.mslmod.random.SpeedrunRandomHelper;
+import com.mcsrleague.mslmod.random.SpeedrunRandomUtil;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,7 @@ public abstract class PiglinBrainMixin {
     @Overwrite
     private static List<ItemStack> getBarteredItem(@NotNull PiglinEntity piglin) {
         LootTable lootTable = piglin.world.getServer().getLootManager().getTable(LootTables.PIGLIN_BARTERING_GAMEPLAY);
-        List<ItemStack> list = lootTable.generateLoot((new LootContext.Builder((ServerWorld) piglin.world)).parameter(LootContextParameters.THIS_ENTITY, piglin).random(SpeedrunRandomHelper.piglinRandom).build(LootContextTypes.BARTER));
+        List<ItemStack> list = lootTable.generateLoot((new LootContext.Builder((ServerWorld) piglin.world)).parameter(LootContextParameters.THIS_ENTITY, piglin).random(SpeedrunRandomUtil.piglinRandom).build(LootContextTypes.BARTER));
         return list;
     }
 }
