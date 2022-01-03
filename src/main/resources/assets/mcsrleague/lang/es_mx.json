@@ -4,6 +4,7 @@
   "mcsrleague.completion.done": "Listo",
   "mcsrleague.completion.tokeninfo": "Por favor, envia tu token!",
   "mcsrleague.completion.copywarning": "Primero debes copiar tu token!",
+  "mcsrleague.completion.time": "Semilla terminada, tiempo final:",
 
   "mcsrleague.continue.title": "Seguir Jugando?",
   "mcsrleague.continue.continue": "Continuar",
@@ -82,5 +83,7 @@
   "mcsrleague.game.noseed": "No puede usar /seed en intentos oficiales!",
   "mcsrleague.game.exit": "Opciones de Salida...",
 
-  "mcsrleague.warning.incompatible": "Se encontraron Mods incompatibles. Por favor, remover los siguientes Mods"
+  "mcsrleague.warning.incompatible": "Se encontraron Mods incompatibles. Por favor, remover los siguientes Mods",
+  "mcsrleague.warning.raceworld": "Los mundos de la MSL creados en los ultimos 30 minutos no pueden ser editados o recreados.",
+  "mcsrleague.warning.ok": "OK"
 }
