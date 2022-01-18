@@ -13,7 +13,6 @@ public abstract class SpeedrunRandomUtil {
 
     private static long currentSeed = 0L;
 
-
     public static OptionalLong tryParseLong(String string) {
         try {
             return OptionalLong.of(Long.parseLong(string));

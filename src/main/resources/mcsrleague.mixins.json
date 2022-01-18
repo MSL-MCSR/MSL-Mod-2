@@ -11,6 +11,7 @@
     "game.ChunkGeneratorMixin",
     "game.CreateWorldScreenMixin",
     "game.DebugHudMixin",
+    "game.DrownedEntityMixin",
     "game.EyeOfEnderEntityMixin",
     "game.IronGolemEntityMixin",
     "game.KeyboardMixin",
