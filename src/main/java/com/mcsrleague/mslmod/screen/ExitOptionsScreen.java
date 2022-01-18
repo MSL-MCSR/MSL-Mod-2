@@ -51,7 +51,9 @@ public class ExitOptionsScreen extends Screen {
         }));
         forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 56, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
             if (!pressedForfeit) {
-                forfeitButton.y = height / 4 + 16;
+                if (MSLMod.eo().getGivesToken()) {
+                    forfeitButton.y = height / 4 + 16;
+                }
                 pressedForfeit = true;
             } else {
                 SeedSession oeoe = MSLMod.eo();
@@ -61,7 +63,7 @@ public class ExitOptionsScreen extends Screen {
                 exitWorld(button);
             }
         }));
-        if (pressedForfeit) {
+        if (pressedForfeit && MSLMod.eo().getGivesToken()) {
             forfeitButton.y = height / 4 + 16;
         }
         confirmText = new TranslatableText("mcsrleague.exit.confirm");

@@ -64,6 +64,10 @@ public class SeedSession {
         init();
     }
 
+    public boolean getGivesToken() {
+        return givesToken;
+    }
+
     public SeedSession(SeedSessionInfoJson saveInfo) {
         creationTime = saveInfo.creationTime;
         startTime = saveInfo.startTime;
