@@ -155,10 +155,6 @@ public class SeedSession {
         }
     }
 
-    public static void createLevel(String worldSeed, Screen parent, Long startTime) {
-        createLevel(worldSeed, parent, startTime, true);
-    }
-
     private static String getTimeString(long startTime, long endTime) {
         double time = (endTime - startTime) / 1000.0d;
         DecimalFormat decimalFormat = new DecimalFormat("0.000");
