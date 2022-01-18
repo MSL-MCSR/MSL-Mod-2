@@ -34,36 +34,6 @@ public class CustomSeedScreen extends Screen {
 
     }
 
-    private static long stringToSeed(String string) {
-
-        OptionalLong optionalLong4;
-        if (StringUtils.isEmpty(string)) {
-            optionalLong4 = OptionalLong.empty();
-        } else {
-            OptionalLong optionalLong2 = tryParseLong(string);
-            if (optionalLong2.isPresent() && optionalLong2.getAsLong() != 0L) {
-                optionalLong4 = optionalLong2;
-            } else {
-                optionalLong4 = OptionalLong.of(string.hashCode());
-            }
-        }
-
-        if (optionalLong4.isPresent()) {
-            return optionalLong4.getAsLong();
-        } else {
-            return 0L;
-        }
-
-    }
-
-    private static OptionalLong tryParseLong(String string) {
-        try {
-            return OptionalLong.of(Long.parseLong(string));
-        } catch (NumberFormatException var2) {
-            return OptionalLong.empty();
-        }
-    }
-
     @Override
     public void tick() {
         worldSeedWidget.tick();
@@ -96,8 +66,8 @@ public class CustomSeedScreen extends Screen {
                         dropSeedWidget.setText(words.get(0));
                     }
                 } else {
-                    SpeedrunRandomUtil.setOverride(stringToSeed(dropSeedWidget.getText()));
                     SeedSession.createLevel(worldSeedWidget.getText(), this, false);
+                    SpeedrunRandomUtil.setCounts(SpeedrunRandomUtil.stringToSeed(dropSeedWidget.getText()));
                 }
             }
         }));

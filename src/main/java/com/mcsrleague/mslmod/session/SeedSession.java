@@ -41,8 +41,8 @@ public class SeedSession {
             "lazydfu",
             "voyager",
             "krypton",
-            "motiono",
             "starlight",
+            "dynamicmenufps",
             "fabric-resource-loader-v0"
     ));
 
@@ -156,7 +156,7 @@ public class SeedSession {
     }
 
     private static String getTimeString(long startTime, long endTime) {
-        double time = (endTime - startTime)/1000.0d;
+        double time = (endTime - startTime) / 1000.0d;
         DecimalFormat decimalFormat = new DecimalFormat("0.000");
         if (time >= 6000) {
             return "99:" + decimalFormat.format(99.999);

@@ -26,8 +26,8 @@ public abstract class LevelPropertiesMixin {
         int barter = dynamic.get("BarterCount").asInt(0);
         int eye = dynamic.get("EyeCount").asInt(0);
         int dragonCounter = dynamic.get("DragonPerch").asInt(0);
-        long seed = dynamic.get("DropSeed").asLong(dynamic.get("WorldGenSettings").get("seed").asLong(0L));
-        SpeedrunRandomUtil.setCounts(seed, barter, blaze, eye, dragonCounter, true);
+        long dropSeed = dynamic.get("DropSeed").asLong(dynamic.get("WorldGenSettings").get("seed").asLong(0L));
+        SpeedrunRandomUtil.setCounts(dropSeed, barter, blaze, eye, dragonCounter);
         SessionWorldUtil.setSessionStart(dynamic.get("SessionStart").asLong(0L));
     }
 

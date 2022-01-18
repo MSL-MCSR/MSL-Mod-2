@@ -86,36 +86,6 @@ public class PlayMSLScreen extends Screen {
 
     }
 
-    private static OptionalLong tryParseLong(String string) {
-        try {
-            return OptionalLong.of(Long.parseLong(string));
-        } catch (NumberFormatException var2) {
-            return OptionalLong.empty();
-        }
-    }
-
-    private static long stringToSeed(String string) {
-
-        OptionalLong optionalLong4;
-        if (StringUtils.isEmpty(string)) {
-            optionalLong4 = OptionalLong.empty();
-        } else {
-            OptionalLong optionalLong2 = tryParseLong(string);
-            if (optionalLong2.isPresent() && optionalLong2.getAsLong() != 0L) {
-                optionalLong4 = optionalLong2;
-            } else {
-                optionalLong4 = OptionalLong.of(string.hashCode());
-            }
-        }
-
-        if (optionalLong4.isPresent()) {
-            return optionalLong4.getAsLong();
-        } else {
-            return 0L;
-        }
-
-    }
-
     private Identifier getNumberImageID(int i) {
         if (i > 0 && i <= 10) {
             return new Identifier("mcsrleague:textures/gui/number/n" + i + ".png");
@@ -321,10 +291,10 @@ public class PlayMSLScreen extends Screen {
 
     private void waitForStartStage() {
         if (System.currentTimeMillis() > seedStart) {
-            if (hasDropSeed) {
-                SpeedrunRandomUtil.setOverride(stringToSeed(dropSeed));
-            }
             SeedSession.createLevel(worldSeed, this, givesToken);
+            if (hasDropSeed) {
+                SpeedrunRandomUtil.setCounts(SpeedrunRandomUtil.stringToSeed(dropSeed));
+            }
         }
     }
 

@@ -52,18 +52,6 @@ public abstract class MinecraftServerMixin {
     @Shadow
     public abstract PlayerManager getPlayerManager();
 
-    @Inject(method = "initScoreboard", at = @At("TAIL"))
-    private void initMixin(PersistentStateManager persistentStateManager, CallbackInfo info) {
-        if (!SpeedrunRandomUtil.hasBeenRead()) {
-            if (MSLMod.ooml()) {
-                SessionWorldUtil.setSessionStart();
-            } else {
-                SessionWorldUtil.setSessionStart(0);
-            }
-        }
-        SpeedrunRandomUtil.setCounts(SpeedrunRandomUtil.overrideOrDefault(getSaveProperties().getGeneratorOptions().getSeed()), 0, 0, 0, 0, false);
-    }
-
     @Inject(method = "tick", at = @At("TAIL"))
     private void tickMixin(BooleanSupplier shouldKeepTicking, CallbackInfo info) {
         for (ServerPlayerEntity player : getPlayerManager().getPlayerList()) {

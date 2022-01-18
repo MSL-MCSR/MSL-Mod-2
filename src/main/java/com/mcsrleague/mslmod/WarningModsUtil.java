@@ -18,8 +18,8 @@ public abstract class WarningModsUtil {
             "lazydfu",
             "voyager",
             "krypton",
-            "motiono",
             "starlight",
+            "dynamicmenufps",
             "fabric-resource-loader-v0"
     ));
     private static Map<String, String> warningMods = null;
@@ -35,7 +35,8 @@ public abstract class WarningModsUtil {
     public static boolean hasWarningMods() {
         return warningModsEnabled;
     }
-    public static boolean hasBypass(){
+
+    public static boolean hasBypass() {
         return bypass;
     }
 
@@ -69,7 +70,7 @@ public abstract class WarningModsUtil {
         for (ModContainer modContainer : FabricLoader.getInstance().getAllMods()) {
             String modId = modContainer.getMetadata().getId();
             if (!validMods.contains(modId)) {
-                if(modId.equals("msl-seed-finding")){
+                if (modId.equals("msl-seed-finding")) {
                     tm = true;
                 }
                 warningModsEnabled = true;

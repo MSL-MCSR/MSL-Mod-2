@@ -44,9 +44,10 @@ public class ExitOptionsScreen extends Screen {
             MSLMod.eo().unpause();
             String seed = String.valueOf(Objects.requireNonNull(Objects.requireNonNull(client.getServer()).getWorld(World.OVERWORLD)).getSeed());
             long start = MSLMod.eo().getStartTime();
+            long dropSeed = SpeedrunRandomUtil.getCurrentSeed();
             exitWorld(button);
-            SpeedrunRandomUtil.setOverride(SpeedrunRandomUtil.getCurrentSeed());
             SeedSession.createLevel(seed, null, start);
+            SpeedrunRandomUtil.setCounts(dropSeed);
         }));
         forfeitButton = addButton(new SquishButtonWidget(width / 2 + 4, height / 4 + 56, 98, 20, new TranslatableText("mcsrleague.exit.forfeit").formatted(Formatting.RED), button -> {
             if (!pressedForfeit) {
