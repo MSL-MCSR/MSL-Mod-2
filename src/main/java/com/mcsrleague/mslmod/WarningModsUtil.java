@@ -20,7 +20,8 @@ public abstract class WarningModsUtil {
             "krypton",
             "starlight",
             "dynamicmenufps",
-            "fabric-resource-loader-v0"
+            "fabric-resource-loader-v0",
+            "motiono"
     ));
     private static Map<String, String> warningMods = null;
     private static boolean warningModsEnabled;

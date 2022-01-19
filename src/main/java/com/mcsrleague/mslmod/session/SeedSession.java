@@ -43,7 +43,8 @@ public class SeedSession {
             "krypton",
             "starlight",
             "dynamicmenufps",
-            "fabric-resource-loader-v0"
+            "fabric-resource-loader-v0",
+            "motiono"
     ));
 
     private final long creationTime;
