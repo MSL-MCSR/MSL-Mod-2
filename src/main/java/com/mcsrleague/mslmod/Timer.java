@@ -36,13 +36,15 @@ public class Timer {
 
     public void render(MatrixStack matrices, TextRenderer textRenderer, int width, int height) {
         if (enabled && shown && MSLMod.ooml() && !client.options.debugEnabled && textRenderer != null) {
+            float scale = 1.0f;
             matrices.translate(0, 0, 999.9);
+            matrices.scale(scale, scale, scale);
             String tString = getTimeString();
-            int tWidth = textRenderer.getWidth(tString);
+            int tWidth = (int) (textRenderer.getWidth(tString) * scale);
             if (shadow) {
-                textRenderer.drawWithShadow(matrices, tString, (int) (width * x) - (x >= 0.5 ? tWidth : 0), (int) (height * y), 16777215);
+                textRenderer.drawWithShadow(matrices, tString, (int) (((width * x) - (x >= 0.5 ? tWidth : 0)) / scale), (int) ((height * y) / scale), 16777215);
             } else {
-                textRenderer.draw(matrices, tString, (int) (width * x) - (x >= 0.5 ? tWidth : 0), (int) (height * y), 16777215);
+                textRenderer.draw(matrices, tString, (int) (((width * x) - (x >= 0.5 ? tWidth : 0)) / scale), (int) ((height * y) / scale), 16777215);
             }
             matrices.pop();
         }
