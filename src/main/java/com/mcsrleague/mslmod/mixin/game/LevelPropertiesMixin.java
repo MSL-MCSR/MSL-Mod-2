@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LevelProperties.class)
 public abstract class LevelPropertiesMixin {
     @Inject(method = "method_29029", at = @At("TAIL"))
-    private static void readLevelDat(Dynamic<Tag> dynamic, DataFixer dataFixer, int i, CompoundTag compoundTag, LevelInfo levelInfo, SaveVersionInfo saveVersionInfo, GeneratorOptions generatorOptions, Lifecycle lifecycle, CallbackInfoReturnable<LevelProperties> cir) {
+    private static void readLevelDat(Dynamic<Tag> dynamic, DataFixer dataFixer, int i, CompoundTag compoundTag, LevelInfo levelInfo, SaveVersionInfo saveVersionInfo, GeneratorOptions generatorOptions, Lifecycle lifecycle, CallbackInfoReturnable<LevelProperties> info) {
         int blaze = dynamic.get("BlazeCount").asInt(0);
         int barter = dynamic.get("BarterCount").asInt(0);
         int eye = dynamic.get("EyeCount").asInt(0);
@@ -32,7 +32,7 @@ public abstract class LevelPropertiesMixin {
     }
 
     @Inject(method = "updateProperties", at = @At("TAIL"))
-    private void addLevelDat(RegistryTracker registryTracker, CompoundTag compoundTag, CompoundTag compoundTag2, CallbackInfo ci) {
+    private void addLevelDat(RegistryTracker registryTracker, CompoundTag compoundTag, CompoundTag compoundTag2, CallbackInfo info) {
         compoundTag.putInt("BlazeCount", SpeedrunRandomUtil.blazeRandom.getCount());
         compoundTag.putInt("BarterCount", SpeedrunRandomUtil.piglinRandom.getCount());
         compoundTag.putInt("EyeCount", SpeedrunRandomUtil.eyeRandom.getCount());
