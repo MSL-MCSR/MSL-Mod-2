@@ -11,15 +11,13 @@
   "contact": {
     "homepage": "https://mcsrleague.com/"
   },
-  "license": "All-Rights-Reserved",
+  "license": "MIT",
   "icon": "assets/mcsrleague/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "com.mcsrleague.mslmod.MSLMod"
-    ],
-    "client": [],
-    "server": []
+    ]
   },
   "mixins": [
     "mcsrleague.mixins.json"
